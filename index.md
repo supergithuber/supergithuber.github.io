@@ -1,13 +1,10 @@
-## Welcome to GitHub Pages
+## SivanWu's GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/supergithuber/supergithuber.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+[编辑主页](https://github.com/supergithuber/supergithuber.github.io/edit/master/index.md)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+提交后，gitpages会使用[Jekyll](https://jekyllrb.com/) 来构建网页。
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
+### Markdown语法
 ```markdown
 Syntax highlighted code block
 
