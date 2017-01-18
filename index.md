@@ -2,7 +2,7 @@
 
 ### 主页目录
 
-1. [随便一个](https://www.baidu.com)
+1. [百度一下](https://www.baidu.com)
 
 
 ### Markdown语法介绍
