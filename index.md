@@ -32,9 +32,9 @@ Syntax highlighted code block
 
 ### 支持与联系
 
-gitpages的帮助文档 [帮助文档](https://help.github.com/categories/github-pages-basics/) 或者 [联系支持](https://github.com/contact)。
-[Jekyll主页](https://jekyllrb.com/) 来构建网页。
-[快速编辑主页](https://github.com/supergithuber/supergithuber.github.io/edit/master/index.md)
+1. gitpages的帮助文档 [帮助文档](https://help.github.com/categories/github-pages-basics/) 或者 [联系支持](https://github.com/contact)。
+2. [Jekyll主页](https://jekyllrb.com/) 来构建网页。
+3. [快速编辑主页](https://github.com/supergithuber/supergithuber.github.io/edit/master/index.md)
 
 ### 我的联系方式
 发送邮件到 1727938213@qq.com
