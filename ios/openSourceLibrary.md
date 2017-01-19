@@ -22,3 +22,8 @@
 
 	PKRevealController是一个侧滑菜单，可以左右或者同时侧滑，可以通过一个按钮控制侧滑，可以自定义高度
 	![PKRevealController](https://supergithuber.github.io/img/PKRevealController.png)
+	
+6. [MGSwipeTableCell](https://github.com/MortimerGoro/MGSwipeTableCell)
+
+	一款可擦除的tableviewViewCell，有多种动画
+	![MGSwipeTableCell](https://supergithuber.github.io/img/MGSwipeTableCell.gif)
