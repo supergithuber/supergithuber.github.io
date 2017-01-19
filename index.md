@@ -2,7 +2,7 @@
 
 ### 主页目录
 
-1. [优秀开源库介绍](https://supergithuber.github.io/ios/openSourceLibrary)
+1. [优秀iOS开源库](https://supergithuber.github.io/ios/openSourceLibrary)
 
 
 ### 支持与联系
