@@ -1,4 +1,4 @@
-## SivanWu's GitHub Pages主页
+## Sivan Wu的主页
 
 ### 主页目录
 
