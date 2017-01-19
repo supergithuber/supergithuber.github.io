@@ -31,3 +31,7 @@
 7. [Quick](https://github.com/Quick/Quick)
 
 	swift中单元测试的库
+	![Quick_1](https://supergithuber.github.io/img/Quick_1.png)
+	![Quick_2](https://supergithuber.github.io/img/Quick_2.png)
+	
+	如果你使用的是Objective-C，可以使用[Specta](https://github.com/specta/specta)作为单元测试的库
