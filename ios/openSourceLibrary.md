@@ -27,3 +27,7 @@
 
 	一款可擦除的tableviewViewCell，有多种动画
 	![MGSwipeTableCell](https://supergithuber.github.io/img/MGSwipeTableCell.gif)
+	
+7. [Quick](https://github.com/Quick/Quick)
+
+	swift中单元测试的库
