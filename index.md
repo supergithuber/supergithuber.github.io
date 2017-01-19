@@ -2,7 +2,7 @@
 
 ### 主页目录
 
-1. [优秀开源库介绍](https://supergithuber.github.io/ios/fopenSourceLibrary)
+1. [优秀开源库介绍](https://supergithuber.github.io/ios/openSourceLibrary)
 
 
 ### Markdown语法介绍
