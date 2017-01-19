@@ -7,4 +7,4 @@
 2. [Alamofire](https://github.com/Alamofire/Alamofire)
 
 	Alamofire就是swift版本的AFNetworking，帮你在swift上上传、下载、获取JSONs
-	![Almofire](https://supergithuber.github.io/img/Almofire.png)
+	![Alamofire](https://supergithuber.github.io/img/Alamofire.png)
