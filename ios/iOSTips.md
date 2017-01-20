@@ -7,7 +7,7 @@
 {
     UIViewController *viewController = nil;
     UIResponder *next = self.nextResponder;
-    while (next)
+    while (next)//
     {
         if ([next isKindOfClass:[UIViewController class]])
         {
@@ -52,7 +52,7 @@
 
 ```
 
-### 3. **UITableView的Group样式下顶部空白处理**
+### 3.**UITableView的Group样式下顶部空白处理**
 
 ```objc
 UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
