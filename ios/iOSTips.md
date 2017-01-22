@@ -7,7 +7,7 @@
 {
     UIViewController *viewController = nil;
     UIResponder *next = self.nextResponder;
-    while (next)//
+    while (next)
     {
         if ([next isKindOfClass:[UIViewController class]])
         {
@@ -84,11 +84,11 @@ void enumerateFonts()
     CGImageRef inImage = image.CGImage;
     CGContextRef cgctx = [self createARGBBitmapContextFromImage:inImage];
     if (cgctx == NULL) {
-    return nil; /* error */
+    return nil; 
     }
     size_t w = CGImageGetWidth(inImage);
     size_t h = CGImageGetHeight(inImage);
-    CGRect rect = {{0,0},{w,h}};
+    CGRect rect = CGRectMake(0,0,w,h);
     CGContextDrawImage(cgctx, rect, inImage);
     unsigned char* data = CGBitmapContextGetData (cgctx);
     if (data != NULL) {
