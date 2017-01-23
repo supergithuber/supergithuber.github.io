@@ -67,4 +67,32 @@
     
     ![WaterDropRefresh](https://supergithuber.github.io/img/WaterDropRefresh.gif)
     
-12. 
+12. [ESRefreshControl](https://github.com/EnjoySR/ESRefreshControl)
+
+    模仿百度外卖，新浪微博，网易新闻的下拉刷新
+    
+    ![ESRefreshControl](https://supergithuber.github.io/img/ESRefreshControl.gif)
+    
+13. [WaveRefresh](https://github.com/alienjun/AJWaveRefresh)
+
+    下拉刷新的水波纹动画
+    
+    ![WaveRefresh](https://supergithuber.github.io/img/WaveRefresh.gif)
+    
+14. [DGElasticPullToRefresh](https://github.com/gontovnik/DGElasticPullToRefresh)
+
+    带有弹性效果的下拉刷新组件
+    
+    ![DGElasticPullToRefresh](https://supergithuber.github.io/img/DGElasticPullToRefresh.gif)
+    
+15. [PullToReflesh](https://github.com/cbangchen/CBPullToReflesh)
+
+    一个下拉刷新的封装库
+    
+    ![PullToReflesh](https://supergithuber.github.io/img/PullToReflesh.gif)
+    
+16. [pull-to-refresh](https://github.com/eggswift/pull-to-refresh)
+
+    一个swift版本的扩展，可以很方便地添加下拉刷新
+    
+    ![pull-to-refresh](https://supergithuber.github.io/img/pull-to-refresh.gif)
