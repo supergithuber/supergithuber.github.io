@@ -48,3 +48,23 @@
     一个煮饭的作品
     
     ![PullToMakeSoup](https://supergithuber.github.io/img/PullToMakeSoup.gif)
+    
+9. [TwitterCover](https://github.com/cyndibaby905/TwitterCover)
+
+    下拉封面模糊的作品
+    
+    ![TwitterCover](https://supergithuber.github.io/img/TwitterCover.gif)
+    
+10. [PullToBounce](https://github.com/entotsu/PullToBounce)
+
+    一个下拉后，有个转圈的动画
+    
+    ![PullToBounce](https://supergithuber.github.io/img/PullToBounce.gif)
+    
+11. [WaterDropRefresh](https://github.com/li6185377/WaterDropRefresh)
+
+    仿path水滴的下拉效果
+    
+    ![WaterDropRefresh](https://supergithuber.github.io/img/WaterDropRefresh.gif)
+    
+12. 
