@@ -24,3 +24,27 @@
     贝塞尔曲线，配合UIDynamic写的拟物下拉刷新动画
     
     ![KYJellyPullToRefresh](https://supergithuber.github.io/img/KYJellyPullToRefresh.gif)
+    
+5. [GearRefreshControl](https://github.com/andreamazz/GearRefreshControl)
+
+    一个有齿轮效果的下拉和上拉刷新
+    
+    ![GearRefreshControl](https://supergithuber.github.io/img/GearRefreshControl.gif)
+    
+6. [refresher](https://github.com/jcavar/refresher)
+
+    简单的下拉和上拉刷新
+    
+    ![refresher](https://supergithuber.github.io/img/refresher.gif)
+    
+7. [ODRefreshControl](https://github.com/Sephiroth87/ODRefreshControl)
+
+    橡皮糖一样的下拉刷新，很有意思，很多app都采用了
+    
+    ![ODRefreshControl](https://supergithuber.github.io/img/ODRefreshControl.jpg)
+    
+8. [PullToMakeSoup](https://github.com/Yalantis/PullToMakeSoup)
+
+    一个煮饭的作品
+    
+    ![PullToMakeSoup](https://supergithuber.github.io/img/PullToMakeSoup.gif)
