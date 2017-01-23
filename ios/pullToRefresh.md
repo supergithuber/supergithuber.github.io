@@ -18,3 +18,9 @@
     在下拉的时候玩个打砖块的小游戏，这样就不会无聊了
     
     ![BreakOutToRefresh](https://supergithuber.github.io/img/BreakOutToRefresh.gif)
+    
+4. [KYJellyPullToRefresh](https://github.com/KittenYang/KYJellyPullToRefresh)
+
+    贝塞尔曲线，配合UIDynamic写的拟物下拉刷新动画
+    
+    ![KYJellyPullToRefresh](https://supergithuber.github.io/img/KYJellyPullToRefresh.gif)
