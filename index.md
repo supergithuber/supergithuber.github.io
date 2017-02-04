@@ -15,5 +15,13 @@
 4. [Markdown语法](https://guides.github.com/features/mastering-markdown/)
 5. 快速修改我的主页[主题](https://github.com/supergithuber/supergithuber.github.io/settings)
 
+### 为什么要写博客
+
+1. 在写博客的同时，加深自己对内容的理解
+2. 在经常从别人博客获取知识的同时，分享自己的收货给他人，怀感恩之心
+3. 和他人交流技术，可以进一步提升自己的理解，完善自己的不足
+4. 提高表达和写作能力
+5. 认识更多的朋友，找到志同道合的人
+
 ### 我的联系方式
 发送邮件到 1727938213@qq.com
