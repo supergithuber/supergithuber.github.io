@@ -7,7 +7,7 @@
 3. 应该在videoComposition属性的instructions字典属性中严格配置来自视频的音视频轨道信息
 4. 切记提取视频的时间信息的时候要使用asset.timerange.duration来获取
 
-下面给出完整的函数代码，可以直接使用
+下面给出完整的函数代码，已经成功采用在我的项目[LivePhoto-Demo](https://github.com/supergithuber/LivePhoto-Demo)中，可以直接使用：
 
 ```objc
 + (void)mergeVideoFiles:(NSMutableArray *)fileURLs
@@ -85,3 +85,4 @@
 
 }
 ```
+
