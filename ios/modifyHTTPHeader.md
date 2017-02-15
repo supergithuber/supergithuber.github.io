@@ -10,6 +10,7 @@
 
 所以只有在xcode中修改访问的请求头才行，通过国外一个网站搜索到最新的修改方法，其实也蛮简单，但是国内就是找不到，这里记录下：
 
+
 ```objc
 // 声明一个请求头字典
 NSDictionary *configDictionary = @{
@@ -37,14 +38,16 @@ dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nu
 
 ```
 
-其中修改userAgent来欺骗后台，然他以为我们是手机访问
 
-deviceModel就是iphone的型号
 
-appVersion是网易考拉这个app的版本
+修改userAgent来欺骗后台，然他以为我们是手机访问，
 
-platform等于2代表是ios，如果是1就是安卓，这是他们自己后台定义的
+deviceModel就是iphone的型号，
 
-apiVersion就是他们后台api的版本号
+appVersion是网易考拉这个app的版本，
+
+platform等于2代表是ios，如果是1就是安卓，这是他们自己后台定义的，
+
+apiVersion就是他们后台api的版本号，
 
 以上这些我是通过charles看到请求头后，按照给出的来改的，你们可以按照自己的需求修改字典，就可以了。
