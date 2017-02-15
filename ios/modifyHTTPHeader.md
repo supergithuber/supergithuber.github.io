@@ -36,3 +36,15 @@ dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nu
 [dataTask resume];
 
 ```
+
+其中修改userAgent来欺骗后台，然他以为我们是手机访问
+
+deviceModel就是iphone的型号
+
+appVersion是网易考拉这个app的版本
+
+platform等于2代表是ios，如果是1就是安卓，这是他们自己后台定义的
+
+apiVersion就是他们后台api的版本号
+
+以上这些我是通过charles看到请求头后，按照给出的来改的，你们可以按照自己的需求修改字典，就可以了。
