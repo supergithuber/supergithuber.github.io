@@ -10,7 +10,7 @@
 
 ### 准备工作
 无论是配置什么本地化，都需要做这个准备工作，首先配置需要国际化的语言，在project->Info->Localizations中添加需要添加的语言，如图所示
-![multiLanguage_1]()
+![multiLanguage_1](https://supergithuber.github.io/img2/multiLanguage_1.png)
 
 我这里添加了两种语言，英文是默认的，我添加了中文简体和法语。
 ### 1. APP名称的本地化<div id="first"></div>
