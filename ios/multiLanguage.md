@@ -13,12 +13,12 @@
 ![multiLanguage_1](https://supergithuber.github.io/img2/multiLanguage_1.png)
 
 我这里添加了两种语言，英文是默认的，我添加了中文简体和法语。
-### 1. <div id="first">APP名称的本地化</div>
+### 1. <span id="first">APP名称的本地化</span>
 
-### 2. <div id="second">代码中字符串的本地化</div>
+### 2. <span id="second">代码中字符串的本地化</span>
 
-### 3. <div id="third">多人开发中，私人本地化字符串表</div>
+### 3. <span id="third">多人开发中，私人本地化字符串表</span>
 
-### 4. <div id="fourth">图片本地化</div>
+### 4. <span id="fourth">图片本地化</span>
 
-### 5. <div id="fifth">本地化初始加载的一些知识</div>
+### 5. <span id="fifth">本地化初始加载的一些知识</span>
