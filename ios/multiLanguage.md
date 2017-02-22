@@ -116,3 +116,35 @@ CFBundleDisplayName = "français Nom";
 ```
 
 ### 5. <span id="fifth">本地化初始加载的一些知识</span>
+
+* 程序在启动的时候，会去**standardUserDefaults**中读取key为**AppleLanguages**的value，这个value是一个string数组，它的firstobject为当前系统的语言，我们可以像下面这样获取当前系统的语言
+
+```objc
+NSArray *languages = [[NSUserDefaults standardUserDefaults] valueForKey:@"AppleLanguages"];
+NSString *currentLanguage = languages.firstObject;
+NSLog(@"模拟器当前语言：%@",currentLanguage);
+```
+
+* 因此我们可以在程序启动的时候，修改**standardUserDefaults**中key为**AppleLanguages**的数组的第一个值来让程序以为我们的语言环境是我们修改的那个，达到模拟语言环境的目的，而不用每次都去切换语言来检验
+
+```objc
+    // 切换语言前
+    NSArray *langArr1 = [[NSUserDefaults standardUserDefaults] valueForKey:@"AppleLanguages"];
+    NSString *language1 = langArr1.firstObject;
+    NSLog(@"模拟器语言切换之前：%@",language1);
+ 
+    // 切换语言
+    NSArray *lans = @[@"en"];
+    [[NSUserDefaults standardUserDefaults] setObject:lans forKey:@"AppleLanguages"];
+ 
+    // 切换语言后
+    NSArray *langArr2 = [[NSUserDefaults standardUserDefaults] valueForKey:@"AppleLanguages"];
+    NSString *language2 = langArr2.firstObject;
+    NSLog(@"模拟器语言切换之后：%@",language2);
+```
+
+附上一张多语言和它在iOS中的缩写对照表
+
+![result](https://supergithuber.github.io/img2/multiLanguage_8.png)
+
+* 在多语言中，不同的语言长短不一样，固定长度的UILabel可能导致显示不全的问题，需要把UILabel的adjustsFontSizeToFitWidth属性设置为YES，让它为我们调整文字的大小。
