@@ -95,6 +95,7 @@ CFBundleDisplayName = "français Nom";
 ```objc
 [self.myButton setTitle:NSLocalizedStringFromTable(@"button", @"XXX", nil) forState:UIControlStateNormal];
 ```
+
 ### 4. <span id="fourth">图片本地化</span>
 
 1. 本地化图片可以采用上面的方式，在本地化文件中配置上在不同语言下的，不同的文件名，然后通过宏来获取不同的文件名value，最后就生成了不一样的图片。这种方式是把不同的图片，都放在了相同的Assets中，管理起来还不太方便。
@@ -113,4 +114,5 @@ CFBundleDisplayName = "français Nom";
 ```objc
 [self.myImageView setImage:[UIImage imageNamed:NSLocalizedString(@"hehe", nil)]];
 ```
+
 ### 5. <span id="fifth">本地化初始加载的一些知识</span>
