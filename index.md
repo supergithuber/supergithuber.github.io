@@ -16,6 +16,8 @@
 
 7. [iOS多语言环境](https://supergithuber.github.io/ios/multiLanguage)
 
+8. [第三方键盘内容方向错误](https://supergithuber.github.io/ios/thirdPartyKeyboard)
+
 ### 支持与联系
 
 1. gitpages的帮助文档 [帮助文档](https://help.github.com/categories/github-pages-basics/) 或者 [联系支持](https://github.com/contact)。
