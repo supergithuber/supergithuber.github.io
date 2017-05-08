@@ -20,6 +20,8 @@
 
 9. [info.plist中的配置](https://supergithuber.github.io/ios/infoConfiguration)
 
+10. [微博计算字数](https://supergithuber.github.io/ios/countWord)
+
 ### 支持与联系
 
 1. gitpages的帮助文档 [帮助文档](https://help.github.com/categories/github-pages-basics/) 或者 [联系支持](https://github.com/contact)。
