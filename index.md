@@ -22,6 +22,8 @@
 
 10. [微博计算字数](https://supergithuber.github.io/ios/countWord)
 
+11. [Timer循环引用](https://supergithuber.github.io/blob/master/ios/TimerRetainCycle)
+
 ### 支持与联系
 
 1. gitpages的帮助文档 [帮助文档](https://help.github.com/categories/github-pages-basics/) 或者 [联系支持](https://github.com/contact)。
