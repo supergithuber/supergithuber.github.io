@@ -1,7 +1,7 @@
 # Timer retainCycle In Swift 
 
 
-在swift中，当一个controller weak持有一个timer，timer初始化的时候调用
+在ios中，当一个controller weak持有一个timer，timer初始化的时候调用（objective-C有类似方法）
 
 ```
 self.timer = Timer.scheduledTimer(timeInterval: interval, target:self, selector: #selector(someFunction), userInfo: nil, repeats: true)
@@ -17,6 +17,8 @@ self.timer = nil
 ```
 
 #### 2. 在controller内定义一个私有内部类，这个类的作用就是提供一个外部类对象，生成一个weak的内部类对象，并提供一个方法调用外部类的周期函数
+
+此处的外部类名叫：BluetoothViewController
 
 ```
 	private class TimerTargetWrapper {
