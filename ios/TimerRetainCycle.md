@@ -1,4 +1,4 @@
-# Timer retainCycle In Swift 
+# Timer retainCycle  
 
 
 在ios中，当一个controller weak持有一个timer，timer初始化的时候调用（objective-C有类似方法）
