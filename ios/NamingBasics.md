@@ -144,5 +144,5 @@ NSColorPanelColorDidChangeNotification
 
 可以使用k开头为constant命名，[Constants规范](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingIvarsAndTypes.html)
 
-#### 1.11.1
+不要使用预处理指令创建常量
 
