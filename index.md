@@ -24,7 +24,7 @@
 
 11. [Timer循环引用](https://supergithuber.github.io/ios/TimerRetainCycle)
 
-12. [命名规范](https://supergithuber.github.io/ios/namingBasics)
+12. [命名规范](https://supergithuber.github.io/ios/NamingBasics)
 
 ### 支持与联系
 
