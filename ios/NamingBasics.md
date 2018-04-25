@@ -43,3 +43,59 @@ NSTableViewColumnDidMoveNotification|通知这样写也合法
 
 * 如果方法返回接收者的某个属性，那么请直接以属性名作为方法名
 * 所有参数前面都应该添加关键字，参数之前的单词尽量能描述参数的意义
+
+#### 1.4 Accessor命名规范
+
+属性的set和get方法 [General Rules](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingMethods.html)
+
+名词
+
+```
+- (NSString *)title;
+- (void)setTitle:(NSString *)aTitle;
+```
+
+形容词
+
+```
+- (BOOL)isEditable;
+- (void)setEditable:(BOOL)flag;
+```
+
+动词
+
+```
+- (BOOL)showsAlpha;
+- (void)setShowsAlpha:(BOOL)flag;
+```
+
+#### 1.5 delegate命名规范
+
+* 以触发消息的对象名开头，省略类名前缀并且首字母小写
+
+```
+- (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(int)row;
+- (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename;
+```
+
+* 除非delegate方法只有一个参数，即触发delegate方法调用的delegating对象，否则冒号是紧跟在类名后面的
+
+```
+- (BOOL)applicationOpenUntitledFile:(NSApplication *)sender;
+```
+
+* 发送通知后再触发delegate方法是一个例外：当delegate方法的调用是为了告诉delegate对象，某个通知已经被发送时，这个delegate方法的参数应该是通知对象，而非触发delegate方法的对象
+
+```
+- (void)windowDidChangeScreen:(NSNotification *)notification;
+```
+
+* 使用did或will这两个情态动词通知delegate对象某件事已经发生或将要发生
+
+```
+- (void)browserDidScroll:(NSBrowser *)sender;
+- (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window;
+```
+
+#### 1.6 Private方法命名规范
+
