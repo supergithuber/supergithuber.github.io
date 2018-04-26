@@ -146,3 +146,26 @@ NSColorPanelColorDidChangeNotification
 
 不要使用预处理指令创建常量
 
+### 1.12 Exception命名规范
+
+类似于Notification命名规范
+[Prefix] + [UniquePartOfName] + Exception
+
+```
+NSColorListIOException
+NSColorListNotEditableException
+NSDraggingException
+NSFontUnavailableException
+NSIllegalSelectorException
+```
+
+## 2. 编码规则
+
+### 2.1 Initialize规范
+
+[**Tips and Techniques for Framework Developers**](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CodingGuidelines/Articles/FrameworkImpl.html)
+
+* (void)initialize类方法先于其他的方法调用。且initialize方法给我们提供了一个让代码once、lazy执行的地方。initialize通常被用于设置class的版本号.[Versioning and Compatibility](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CodingGuidelines/Articles/FrameworkImpl.html#//apple_ref/doc/uid/20001286-1001777)
+
+initialize方法的调用遵循继承规则(所谓继承规则，简单来讲是指：子类方法中可以调用到父类的同名方法，即使没有显式调用[super xxx])。如果我们没有实现initialize方法，运行时初次调用这个类的时候，系统会沿着继承链，先后给继承链上游中的每个超类发送一条initialize消息，直到某个超类实现了initlialize方法，才会停止向上调用。因此，在运行时，某个类的initialize方法可能会被调用多次(比如：一个子类没有实现initialize方法)。
+比如：有三个类：SuperClass、SubClass和FinalClass。他们的继承关系是这样的FinalClass->SubClass->SuperClass，只实现了SuperClass方法的initialize方法。
