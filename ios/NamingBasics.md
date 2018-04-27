@@ -234,11 +234,11 @@ Objective-C有designated Initializers和secondary Initializers的概念。
 
 一个类可以有一个或者多个designated Initializers。但是要保证所有的其他secondary initializers都要调用designated Initializers。即：只有designated Initializers才会存储对象的信息。这样的好处是：当这个类底层的某些数据存储机制发生变化时(可能是一些property的变更)，只需要修改这个designated Initializers内部的代码即可。无需改动其他secondary Initializers初始化方法的代码。
 
-#### 1. 所有secondary 初始化方法都应该调用designated 初始化方法
-#### 2. 所有子类的designated初始化方法都要调用父类的designated初始化方法。使这种调用关系沿着类的继承体系形成一条链
-#### 3. 如果子类的designated初始化方法与超类的designated初始化方法不同，则子类应该覆写超类的designated初始化方法。（因为开发者很有可能直接调用超类的某个designated方法来初始化一个子类对象，这样也是合情合理的，但使用超类的方法初始化子类，可能会导致子类在初始化时缺失一些必要信息）
-#### 4. 如果超类的某个初始化方法不适用于子类，则子类应该覆写这个超类的方法，并在其中抛出异常
-#### 5. 禁止子类的designated初始化方法调用父类的secondary初始化方法。否则容易陷入方法调用死循环。如下
+##### 1. 所有secondary 初始化方法都应该调用designated 初始化方法
+##### 2. 所有子类的designated初始化方法都要调用父类的designated初始化方法。使这种调用关系沿着类的继承体系形成一条链
+##### 3. 如果子类的designated初始化方法与超类的designated初始化方法不同，则子类应该覆写超类的designated初始化方法。（因为开发者很有可能直接调用超类的某个designated方法来初始化一个子类对象，这样也是合情合理的，但使用超类的方法初始化子类，可能会导致子类在初始化时缺失一些必要信息）
+##### 4. 如果超类的某个初始化方法不适用于子类，则子类应该覆写这个超类的方法，并在其中抛出异常
+##### 5. 禁止子类的designated初始化方法调用父类的secondary初始化方法。否则容易陷入方法调用死循环。如下
 
 ```
 // 超类
@@ -279,7 +279,7 @@ Objective-C有designated Initializers和secondary Initializers的概念。
 @end
 ```
 
-#### 6. 另外禁止在init方法中使用self.xxx的方式访问属性。如果存在继承的情况下，很有可能导致崩溃。[为什么不能在init和dealloc函数中使用accessor方法](https://www.jianshu.com/p/3cf3f5007243)。
+##### 6. 另外禁止在init方法中使用self.xxx的方式访问属性。如果存在继承的情况下，很有可能导致崩溃。[为什么不能在init和dealloc函数中使用accessor方法](https://www.jianshu.com/p/3cf3f5007243)。
 
 ### 2.3 初始化错误
 
@@ -305,9 +305,9 @@ Objective-C有designated Initializers和secondary Initializers的概念。
 
 ### 2.4 dealloc规范
 
-1. 不要忘记在dealloc方法中移除通知和KVO
-2. dealloc 方法应该放在实现文件的**最上面**，并且刚好在 @synthesize 和 @dynamic 语句的后面。在任何类中，init 都应该直接放在 dealloc 方法的下面
-3. 在dealloc方法中，禁止将self作为参数传递出去，如果self被retain住，到下个runloop周期再释放，则会造成多次释放crash
+##### 1. 不要忘记在dealloc方法中移除通知和KVO
+##### 2. dealloc 方法应该放在实现文件的**最上面**，并且刚好在 @synthesize 和 @dynamic 语句的后面。在任何类中，init 都应该直接放在 dealloc 方法的下面
+##### 3. 在dealloc方法中，禁止将self作为参数传递出去，如果self被retain住，到下个runloop周期再释放，则会造成多次释放crash
 
 ```
 -(void)dealloc{
@@ -319,4 +319,205 @@ Objective-C有designated Initializers和secondary Initializers的概念。
 }
 ```
 
-4. 和init方法一样，禁止在dealloc方法中使用self.xxx的方式访问属性。如果存在继承的情况下，很有可能导致崩溃。
+##### 4. 和init方法一样，禁止在dealloc方法中使用self.xxx的方式访问属性。如果存在继承的情况下，很有可能导致崩溃。
+
+### 2.5 block规范
+
+1. 调用block时，要记得判空
+2. 注意block可能的循环引用
+
+### 2.6 Notification使用规范
+
+通知和block，delegate所起到的作用是相同，无非是在类之间传递信息
+当夸域较远时，可以很好地用通知解决信息传递
+但是当通知过多的时候，会容易产生bug，可读性和维护性也差，不必要的耦合会过高
+
+1. 基于以上的陈述，当我们使用通知时，必须要思考，有没有更好的办法来代替这个通知。禁止遇到问题就想到通知，把通知作为备选项而非首选项
+2. post通知时，object通常是指发出notification的对象，如果在发送notification的同时要传递一些额外的信息，请使用userInfo，而不是object
+3. 通知执行的线程取决于发出通知的线程，而不是注册通知的线程。所以需要在一些UI通知方法内，回到主线程，因为调用者可能不知道发出的地方是不是主线程
+
+**说明**：每个进程都会创建一个NotificationCenter，这个center通过NSNotificationCenter defaultCenter获取，当然也可以自己创建一个center。
+NoticiationCenter是以同步（非异步，当前线程，会等待，会阻塞）的方式发送请求。即，当post通知时，center会一直等待所有的observer都收到并且处理了通知才会返回到poster。如果需要异步发送通知，请使用notificationQueue，在一个多线程的应用中，通知会发送到所有的线程中
+
+### 2.7 UI规范
+
+1. 如果想要获取window，不要使用view.window获取。请使用[[UIApplication sharedApplication] keyWindow]
+2. 在使用到 UIScrollView，UITableView，UICollectionView 的 Class 中，需要在 dealloc 方法里手动的把对应的 delegate, dataSouce 置为 nil
+3. UITableView使用self-sizing实现不等高cell时，请在**- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;** 中给cell设置数据。不要在**- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;**方法中给cell设置数据
+4. 当访问一个 CGRect 的 x， y， width， height 时，应该使用CGGeometry 函数代替直接访问结构体成员。苹果的 CGGeometry 参考中说到
+
+> All functions described in this reference that take CGRect data structures as inputs implicitly standardize those rectangles before calculating their results. For this reason, your applications should avoid directly reading and writing the data stored in the CGRect data structure. Instead, use the functions described here to manipulate rectangles and to retrieve their characteristics.
+ 
+推荐写法
+
+```
+CGRect frame = self.view.frame;
+
+CGFloat x = CGRectGetMinX(frame);
+CGFloat y = CGRectGetMinY(frame);
+CGFloat width = CGRectGetWidth(frame);
+CGFloat height = CGRectGetHeight(frame);
+```
+
+不推荐写法
+
+```
+CGRect frame = self.view.frame;
+
+CGFloat x = frame.origin.x;
+CGFloat y = frame.origin.y;
+CGFloat width = frame.size.width;
+CGFloat height = frame.size.height;
+```
+
+### 2.8 IO规范
+
+尽量少用NSUserDefaults。
+
+说明：[[NSUserDefaults standardUserDefaults] synchronize] 会block住当前线程，知道所有的内容都写进磁盘，如果内容过多，重复调用的话会严重影响性能
+
+一些经常被使用的文件建议做好缓存。避免重复的IO操作。建议只有在合适的时候再进行持久化操作
+
+### 2.9 Collection规范
+
+##### 1. 不要用一个可能为nil的对象初始化集合对象，否则可能会导致crash，对插入到集合对象里面的对象也要进行判空
+
+```
+// 可能崩溃
+NSObject *obj = somOjbcetMaybeNil;
+NSMutableArray *arrM = [NSMutableArray arrayWithObject:obj];
+// 崩溃信息：
+*** Terminating app due to uncaught exception'NSInvalidArgumentException', 
+reason: '*** -[__NSPlaceholderArray initWithObjects:count:]: 
+attempt to insert nil object from objects[0]’
+```
+
+改进
+
+```
+// 改进办法:
+NSObject *obj = somOjbcetMaybeNil;
+NSMutableArray *arrM = nil;
+if (obj && [obj isKindOfClass:[NSObjectclass]]) {
+    arrM = [NSMutableArray arrayWithObject:obj];
+} else {
+    arrM = nil;
+}
+```
+
+##### 2. 注意在多线程环境下访问可变集合对象的问题，必要时应该加锁保护。不可变集合(比如NSArray)类默认是线程安全的，而可变集合类(比如NSMutableArray)不是线程安全的
+
+##### 3. 遍历可变集合对象中的元素的时候，应该先copy为不可变集合，再进行遍历
+
+```
+// 正确写法
+- (void)checkAllValidItems{
+NSArray *array = [array copy];
+[array enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//do something using obj
+}]; }
+
+// 错误写法
+- (void)checkAllValidItems{
+[self.allItems enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    //do something using obj
+    // 如果在enumerate过程中，其他线程对allItems这个可变集合进行了变更操作，这里就有可能引发crash
+}]; }
+```
+
+##### 4. 注意使用enumerateObjectsUsingBlock遍历集合对象中的对象时，关键字return的作用域。block中的return代表的是使当前的block返回，而非使当前的整个函数体返回。以下使用NSArray举例，其他集合类型同理
+
+```
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSArray *array = [NSArray arrayWithObject:@"1"];
+    [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        // excute some code...
+        return;
+    }];
+    // 依然会执行到这里
+    NSLog(@"fall through");
+}
+
+// 执行结果：
+// fall through
+```
+
+当然，两个enumerateObjectsUsingBlock嵌套，如果仅在最内层的block中return，外层block的代码还是会被执行。如下：
+
+```
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSArray *arr1 = [NSArray arrayWithObject:@"1"];
+    NSArray *arr2 = [NSArray arrayWithObject:@"2"];
+    [arr2 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [arr1 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            // do something
+            return;
+        }];
+        NSLog(@"fall through");
+    }];
+    NSLog(@"fall through");
+}
+
+// 执行结果：
+// fall through
+// fall through
+```
+
+这么理解，block是一个匿名函数，block内的返回，是函数的返回。
+
+##### 5. 禁止返回mutable对象，禁止mutable对象作为入参传递，这是避免不可预知crash的良药，再代码量大了以后，很可能会有多线程导致闪退的问题
+
+##### 6. 建议集合类使用泛型来指定对象的类型
+
+```
+@property(nonatomic,copy) NSArray<NSString *> *array;
+@property(nonatomic,strong) NSMutableDictionary<NSString *,NSString *> *dictionary;
+```
+
+### 2.10 分支语句规范
+
+##### 1. if条件判断语句后面必须要加大括号{}。不然随着业务的发展和代码迭代，极有可能引起逻辑问题，否则随着代码量的增大，会导致可读性差，理解逻辑出错
+
+```
+// 建议
+if (!error) {
+    return success;
+}
+// 不建议
+if (!error) 
+    return success;
+if (!error)  return success;
+```
+
+##### 2. 遵循gold path法则，不要把真正的逻辑写道括号内
+
+```
+// 不建议
+- (void)someFuncWith:(NSString *)parameter {
+    if (parameter) {
+        // do something
+        [self doSomething];
+    }
+}
+// 建议
+- (void)someFuncWith:(NSString *)parameter {
+    if (!parameter) {
+        return;
+    }
+    // do something
+    [self doSomething];
+}
+```
+
+##### 3. 对于条件语句的真假，因为 nil 解析为 NO，所以没有必要在条件中与它进行比较。永远不要直接和 YES 和 NO进行比较，因为 YES 被定义为 1，而 BOOL 可以多达 8 位
+
+```
+// 建议
+if (isAwesome)
+if (![someObject boolValue])
+// 禁止这样做
+if ([someObject boolValue] == NO) { }
+if (isAwesome == YES) { } 
+```
+
+##### 4. switch...case...语句的每个case都要添加break关键字，避免出现fall-through
