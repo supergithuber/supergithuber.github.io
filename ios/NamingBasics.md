@@ -531,3 +531,44 @@ isEqual:方法允许我们传入任意类型的对象作为参数，如果参数
 如果我们是从外部数据源(比如info.plist或preferences)获取的数据，那么推荐使用isEqual:，因为这样更安全。如果我们知道参数的确切类型，那么可以使用类似于isEqualToString:这样的方法，因为性能更好。
 
 如果有需要，可以重载等同性判断方法，[对象等同性判断](https://www.jianshu.com/p/e1fd4fb9341c)
+
+### 2.12 懒加载规范
+
+适用场景
+
+* 一个对象的创建依赖于其他对象
+* 一个对象在它的场景下，可能被使用，也可能不被使用
+* 一个对象的创建需要经过大量的计算或者比较消耗性能
+
+如果一个对象在懒加载后，某些场景下又被置为nil，很难保证这个对象的懒加载不会再次被触发
+
+### 2.13 多线程规范
+
+1. 禁止使用GCD的dispatch_get_current_queue()，会获得意想不到的信息，已经被苹果废弃
+2. 仅当必须保证顺序执行时才使用dispatch_sync，否则容易出现死锁，应避免使用，可使用dispatch_async
+3. 禁止在非主线程中进行UI元素的操作
+4. 如果需要进行大文件或者多文件的IO操作，禁止主线程使用，必须进行异步处理
+5. 对剪贴板的读取必须要放在异步线程处理，最新Mac和iOS里的剪贴板共享功能会导致有可能需要读取大量的内容，导致读取线程被长时间阻塞
+
+```
+dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+   UIPasteboard *pasteboard = [UIPasteboard generalPasteboard]; 
+   if (pasteboard.string.length > 0) {//这个方法会阻塞线程
+      NSString *text = [pasteboard.string copy];
+      [pasteboard setValue:@"" forPasteboardType:UIPasteboardNameGeneral];
+      if (text == nil || [text isEqualToString:@""]) {
+          return ;
+      }
+      dispatch_async(dispatch_get_main_queue(), ^{
+          [self processShareCode:text];
+      });
+   }
+});
+```
+
+### 2.14 内存管理规范
+
+1. 函数提前return的时候，要注意是否有对象没有被释放掉（CF对象），否则会内存泄漏
+2. 少用单例，会造成常驻内存。UIApplication、access database 、request network 、access userInfo这类全局仅存在一份的对象或者需要多线程访问的对象，可以使用单例
+3. 单例初始化方法中尽量保证单一职责,尤其不要进行其他单例的调用。
+4. 在dealloc方法中，禁止将self作为参数传递出去，如果self被retain住，到下个runloop周期再释放，则会造成多次释放crash。
