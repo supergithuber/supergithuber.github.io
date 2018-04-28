@@ -521,3 +521,13 @@ if (isAwesome == YES) { }
 ```
 
 ##### 4. switch...case...语句的每个case都要添加break关键字，避免出现fall-through
+
+### 2.11 对象等同性判断
+
+isEqual:方法允许我们传入任意类型的对象作为参数，如果参数类型和receiver(方法调用者)类型不一致，会返回NO。
+
+而isEqualToString:和isEqualToArray:这两个方法会假设参数类型和receiver类型一致，也就是说，这两个方法不会对参数进行类型检查，因此这两个方法性能更好但不安全。
+
+如果我们是从外部数据源(比如info.plist或preferences)获取的数据，那么推荐使用isEqual:，因为这样更安全。如果我们知道参数的确切类型，那么可以使用类似于isEqualToString:这样的方法，因为性能更好。
+
+如果有需要，可以重载等同性判断方法，[对象等同性判断](https://www.jianshu.com/p/e1fd4fb9341c)
