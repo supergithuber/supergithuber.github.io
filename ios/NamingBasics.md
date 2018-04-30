@@ -571,4 +571,135 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 1. 函数提前return的时候，要注意是否有对象没有被释放掉（CF对象），否则会内存泄漏
 2. 少用单例，会造成常驻内存。UIApplication、access database 、request network 、access userInfo这类全局仅存在一份的对象或者需要多线程访问的对象，可以使用单例
 3. 单例初始化方法中尽量保证单一职责,尤其不要进行其他单例的调用。
-4. 在dealloc方法中，禁止将self作为参数传递出去，如果self被retain住，到下个runloop周期再释放，则会造成多次释放crash。
+4. 在dealloc方法中，禁止将self作为参数传递出去，如果self被retain住，到下个runloop周期再释放，则会造成多次释放crash
+5. 除非你清除的知道自己在做什么。否则不建议将UIView类的对象加入到NSArray、NSDictionary、NSSet中。如有需要可以添加到NSMapTable 和 NSHashTable。因为NSArray、NSDictionary、NSSet会对加入的对象做strong引用（即使你把加入的对象进行了weak）。而NSMapTable、NSHashTable会对加入的对象做weak引用。
+
+说明：简单的说，NSHashTable相当于weak的NSMutableArray；NSMapTable相当于weak的NSMutableDictionary
+
+```
+// 错误的例子：
+@implementationWSObject
+- (void)dealloc {
+    NSLog(@"dealloc");
+}
+@end
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    WSObject *object = [WSObject new];
+    // 即使对object进行了weak弱化，数组也会强引用这个object对象。dealloc方法不会被执行。
+    __weak typeof(object) weakObject = object;
+    [self.arrM addObject:weakObject];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSLog(@"count = %ld",self.arrM.count);
+    });
+}
+// 打印结果：
+// count = 1
+```
+
+```
+// 正确的例子：
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    WSObject *object = [WSObject new];
+    NSHashTable *hashTable = [NSHashTable weakObjectsHashTable];
+    [hashTable addObject:object];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSLog(@"count = %ld",hashTable.count);
+    });
+}
+// 打印结果：
+// dealloc
+// count = 1
+```
+
+你可能对上面的例子有所疑惑，object已经释放了，但是控制台仍然输出 hashTable.count == 1。但是请相信我，此时存在于hashTable中的那个object已经变成了nil。不信你继续看下面的例子：
+
+```
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    WSObject *object = [WSObject new];
+    NSHashTable *hashTable = [NSHashTable weakObjectsHashTable];
+    [hashTable addObject:object];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSLog(@"count = %ld",hashTable.count);
+        if (hashTable && hashTable.count) {
+            WSObject *object = [hashTable anyObject];
+            NSLog(@"object = %@",[object self]);
+        }
+    });
+}
+// 打印结果：
+2017-07-0422:19:10.952139+0800 tst[46834:4305636] dealloc
+2017-07-0422:19:13.149903+0800 tst[46834:4305636] count = 1
+2017-07-0422:20:55.234522+0800 tst[46834:4305636] object = (null)
+```
+
+### 2.15 延迟调用规范
+
+**performSelector:withObject:afterDelay:要在有Runloop的线程里调用，否则调用无法生效**
+
+异步线程默认是没有runloop的，除非手动创建；而主线程是系统会自动创建Runloop的。所以在异步线程调用是请先确保该线程是有Runloop的
+
+使用performSelector:withObject:afterDelay:和cancelPreviousPerformRequestsWithTarget组合的时候要小心：
+
+1. afterDelay会增加引用计数，而cancel会对引用计数减一
+
+2. 如果receiver在引用计数器为1的时候，调用cancel会立即回收receiver。后续再次调用receiver的方法就会crash。所以我们需要使用weakSelf并判空。如下：
+
+```
+__weak typeof(self) weakSelf = self;
+[NSObject cancelPreviousPerformRequestsWithTarget:self]; 
+if (!weakSelf) {
+    // NSLog(@"self dealloc");
+    return;
+ }
+[self doOther];
+```
+
+### 2.16 注释规范
+
+1. 如果方法、函数、类、属性等需要提供给外界或者他人使用，必须要加注释说明
+2. 如果你的代码以SDK的形式提供给其他人使用，那么接口的注释是必须的。必须对暴露给外界的所有方法、属性、参数加以注释说明
+3. 注释应该说明其作用以及注意事项
+4. 因为方法或属性本身就具有自我描述性，注释应该简明扼要，说明是什么和为什么即可
+
+### 2.17 类设计规范
+
+1. 尽量减少继承，类的继承关系不要超过3层，可以考虑使用category、protocol来代替继承
+2. 把一些稳定的、公共的变量或者方法抽取到父类中。子类尽量只维持父类所不具备的特性和功能
+3. .h文件中尽量不要声明成员变量
+4. .h文件中的属性尽量声明为只读
+5. .h文件中只暴露出一些必要的类、公开的方法、只读属性；私有类、私有方法和私有属性以及成员变量，尽量写在.m文件中
+
+### 2.18 代码组织规范
+
+[objective-c-style-guide](https://github.com/raywenderlich/objective-c-style-guide)
+
+```
+#pragma mark - Lifecycle
+- (instancetype)init {}
+- (void)dealloc {}
+- (void)viewDidLoad {}
+- (void)viewWillAppear:(BOOL)animated {}
+- (void)didReceiveMemoryWarning {}
+#pragma mark - Custom Accessors
+- (void)setCustomProperty:(id)value {}
+- (id)customProperty {}
+#pragma mark - IBActions
+- (IBAction)submitData:(id)sender {}
+#pragma mark - Public
+- (void)publicMethod {}
+#pragma mark - Private
+- (void)privateMethod {}
+#pragma mark - UITextFieldDelegate
+#pragma mark - UITableViewDataSource
+#pragma mark - UITableViewDelegate
+#pragma mark - NSCopying
+- (id)copyWithZone:(NSZone *)zone {}
+#pragma mark - NSObject
+- (NSString *)description {}
+```
+
+### 2.19 工程结构规范
+
+1. 为了避免文件杂乱，磁盘文件应该保持和 Xcode 项目文件同步。Xcode 创建的任何组（group）都必须在文件系统有相应的映射。为了更清晰，代码不仅应该按照类型进行分组，也可以根据业务功能进行分组
+2. 合理组织工程的内的文件夹，工程中一般包括但不限于以下几个文件夹category(分类)、util/helper(工具类)、resource(资源)、const(常量)、third(第三方)
+3. 尽可能一直打开 target Build Settings 中 "Treat Warnings as Errors" 以及一些[额外的警告](https://boredzo.org/blog/archives/2009-11-07/warnings)。如果你需要忽略指定的警告,使用 [Clang 的编译特性](http://clang.llvm.org/docs/UsersManual.html#controlling-diagnostics-via-pragmas)
