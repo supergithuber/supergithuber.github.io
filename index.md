@@ -26,6 +26,8 @@
 
 12. [命名规范](https://supergithuber.github.io/ios/NamingBasics)
 
+13. [自定义个人微信账号](https://supergithuber.github.io/tips/weChatRobot)
+
 ### 支持与联系
 
 1. gitpages的帮助文档 [帮助文档](https://help.github.com/categories/github-pages-basics/) 或者 [联系支持](https://github.com/contact)。
