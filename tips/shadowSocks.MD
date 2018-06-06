@@ -2,9 +2,9 @@
 
 1. 买一台vps，安装好centos7系统（当然也可以其他系统）。
 2. 在终端或者其他ssh客户端（putty），ssh root@[你服务器的ip]连接你的服务器。
-3. 执行：wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh 安装shadowsocks。
-4. 执行：chmod +x shadowsocks-all.sh 改为可执行权限。
-5. 执行： ./shadowsocks-all.sh 2>&1 | tee shadowsocks-all.log 日志输出。
+3. 执行："wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh" 安装shadowsocks。
+4. 执行："chmod +x shadowsocks-all.sh" 改为可执行权限。
+5. 执行： "./shadowsocks-all.sh 2>&1 | tee shadowsocks-all.log" 日志输出。
 6. 
 
 ```
