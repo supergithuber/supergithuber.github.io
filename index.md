@@ -30,6 +30,8 @@
 
 14. [在VPS上搭建shadowSocks翻墙](https://supergithuber.github.io/vps/shadowSocks)
 
+15. [抓取Linux上的流量](https://supergithuber.github.io/vps/httpry)
+
 ### 支持与联系
 
 1. gitpages的帮助文档 [帮助文档](https://help.github.com/categories/github-pages-basics/) 或者 [联系支持](https://github.com/contact)。
