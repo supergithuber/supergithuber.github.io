@@ -26,9 +26,9 @@
 
 12. [命名规范](https://supergithuber.github.io/ios/NamingBasics)
 
-13. [自定义个人微信账号](https://supergithuber.github.io/tips/weChatRobot)
+13. [自定义个人微信账号](https://supergithuber.github.io/vps/weChatRobot)
 
-14. [在VPS上搭建shadowSocks翻墙](https://supergithuber.github.io/tips/shadowSocks)
+14. [在VPS上搭建shadowSocks翻墙](https://supergithuber.github.io/vps/shadowSocks)
 
 ### 支持与联系
 
