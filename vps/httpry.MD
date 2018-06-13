@@ -74,8 +74,105 @@ Additional information can be found at:
 
 ### 使用范例
 
+##### 1. 监听特定网卡
 
+```
+httpry -i eth0
+```
+
+##### 2. 以二进制形势存储结果，并使用httpry打开
+
+```
+httpry -i eth0 -b output.dump  //存储
+
+httpry -r output.dump  //打开
+```
+
+##### 3. 将httpry数据以可读文件保存
+
+```
+httpry -i eth0 -o /tmp/output.txt
+```
+
+##### 4. 监视指定的HTTP方法
+
+```
+httpry -i eth0 -m get,head
+```
+
+##### 5. 分析记录
+
+编译安装时候，有一个perl脚本用来帮助我们分析httpry输出。该脚本在/usr/local/share/httpry-0.1.8/scripts/目录下
+
+> hostname : 显示一些列唯一主机名
+> find_proxies：检测web代理
+> search_terms：查找并计算在搜索服务中输入搜索词
+> content_analysis：查找包含特定关键字的URI
+> xml_output：以xml格式输出
+> log_summary：生成日志摘要
+> db_dump：将日志转存到mysql数据库中
+> 
+
+要先用第三点提到的 -o 生成可读文件/tmp/output.txt，然后再对文件执行脚本进行分析
+
+```
+cd /usr/local/share/httpry-0.1.8/scripts/
+perl ./parse_log.pl -p plugins/log_summary.pm  /tmp/output.txt
+```
+
+parse_log.pl执行完后，会在/usr/local/share/httpry-0.1.8/scripts/目录下生成分析结果文件log_summary.txt。类似下面
+
+```
+$ cat log_summary.txt 
+
+LOG SUMMARY
+
+Generated:      Wed May 25 13:57:40 2016
+Total lines:    14
+Total run time: 0.0 secs
+
+
+REQUESTS BY HOUR
+
+  0%   0%   0%   0%   0%   0%   0%   0%   0%   0%   0%   0% 
+  |----|----|----|----|----|----|----|----|----|----|----|
+ 00   01   02   03   04   05   06   07   08   09   10   11  
+
+  0% 100%   0%   0%   0%   0%   0%   0%   0%   0%   0%   0% 
+  |----|----|----|----|----|----|----|----|----|----|----|
+ 12   13   14   15   16   17   18   19   20   21   22   23  
+
+
+15/5 VISITED HOSTS
+
+2	28.6%	hi-linux.com
+2	28.6%	www.hi-linux.com
+1	14.3%	www.163.com
+1	14.3%	www.qq.com
+1	14.3%	www.baidu.com
+
+
+15/1 TOP TALKERS
+
+7	100.0%	192.168.119.100
+
+
+15/1 RESPONSE CODES
+
+7	100.0%	200
+```
+
+产生所有报表
+
+```
+perl ./parse_log.pl -d plugins /tmp/output.txt
+ls -l *.txt
+```
+
+parse_log.pl执行完后，会在httpry-0.1.8/scripts目录下生成一些分析结果文件(*.txt/xml)
 
 ### 相关连接
 
 [项目地址](http://dumpsterventures.com/jason/httpry/)
+
+[github](https://github.com/jbittel/httpry)
