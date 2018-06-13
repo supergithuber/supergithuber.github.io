@@ -105,13 +105,18 @@ httpry -i eth0 -m get,head
 编译安装时候，有一个perl脚本用来帮助我们分析httpry输出。该脚本在/usr/local/share/httpry-0.1.8/scripts/目录下
 
 > hostname : 显示一些列唯一主机名
-> find_proxies：检测web代理
-> search_terms：查找并计算在搜索服务中输入搜索词
-> content_analysis：查找包含特定关键字的URI
-> xml_output：以xml格式输出
-> log_summary：生成日志摘要
-> db_dump：将日志转存到mysql数据库中
 > 
+> find_proxies：检测web代理
+> 
+> search_terms：查找并计算在搜索服务中输入搜索词
+> 
+> content_analysis：查找包含特定关键字的URI
+> 
+> xml_output：以xml格式输出
+> 
+> log_summary：生成日志摘要
+> 
+> db_dump：将日志转存到mysql数据库中
 
 要先用第三点提到的 -o 生成可读文件/tmp/output.txt，然后再对文件执行脚本进行分析
 
