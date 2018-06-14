@@ -3,7 +3,8 @@
 ### 主页目录
 
 * [iOS](https://supergithuber.github.io/ios/ios_index)
-* [server](https://supergithuber.github.io/vps/vps_index)
+
+* [Server](https://supergithuber.github.io/vps/vps_index)
 
 1. [优秀iOS开源库](https://supergithuber.github.io/ios/openSourceLibrary)
 
