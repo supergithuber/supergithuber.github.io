@@ -42,3 +42,4 @@ Enjoy it!
 ##### 参考链接
 1. [轻松在 VPS 搭建 Shadowsocks 翻墙](https://www.diycode.cc/topics/738)
 2. [CentOS7增加或修改SSH端口号](https://blog.csdn.net/ausboyue/article/details/53691953)
+3. [开启BBR加速](https://rootrl.github.io/2017/10/11/Vultr-Centos%E5%AE%89%E8%A3%85shadowsocks%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%B9%B6%E5%BC%80%E5%90%AFBBR%E5%8A%A0%E9%80%9F/)
