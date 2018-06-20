@@ -39,7 +39,70 @@ Enjoy it!
 
 ##### 最后在你的客户端下载shadowsocks，mac和windows在github上有；iOS和android可以下载superwingy, shadowrocket类似的VPN客户端；chrome浏览器也有类似插件，输入服务器ip，端口，密码，加密方式就可以
 
+
+-------
+
+### 开启BBR加速
+
+#### 开启TCP Fast Open
+```
+vim /etc/rc.local
+
+# 在最后一行增加以下内容
+echo 3 > /proc/sys/net/ipv4/tcp_fastopen
+
+# 然后
+vim /etc/sysctl.conf
+
+# 在最后一行增加：
+net.ipv4.tcp_fastopen = 3
+
+# 编辑配置文件
+vim /etc/shadowsocks/config.json
+# 添加一项
+"fast_open":true
+
+# 最后重启
+/etc/init.d/shadowsocks restart
+
+```
+
+#### 安装脚本
+
+```
+wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
+
+chmod +x bbr.sh
+
+./bbr.sh
+```
+
+#### 查看内核
+
+```
+uname -r
+```
+
+是不是新版的
+
+#### 检查是否开启BBR
+
+```
+sysctl net.ipv4.tcp_available_congestion_control
+# 返回值一般为：net.ipv4.tcp_available_congestion_control = bbr cubic reno
+
+sysctl net.ipv4.tcp_congestion_control
+# 返回值一般为：net.ipv4.tcp_congestion_control = bbr
+
+sysctl net.core.default_qdisc
+# 返回值一般为：net.core.default_qdisc = fq
+
+lsmod | grep bbr
+# 返回值有tcp_bbr则说明已经启动
+```
+
 ##### 参考链接
 1. [轻松在 VPS 搭建 Shadowsocks 翻墙](https://www.diycode.cc/topics/738)
 2. [CentOS7增加或修改SSH端口号](https://blog.csdn.net/ausboyue/article/details/53691953)
 3. [开启BBR加速](https://rootrl.github.io/2017/10/11/Vultr-Centos%E5%AE%89%E8%A3%85shadowsocks%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%B9%B6%E5%BC%80%E5%90%AFBBR%E5%8A%A0%E9%80%9F/)
+4. [下载shadowsocks客户端](https://github.com/shadowsocks)
