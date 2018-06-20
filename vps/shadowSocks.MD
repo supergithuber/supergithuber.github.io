@@ -1,6 +1,6 @@
 ## 搭建shadowSocks
 
-1. 买一台vps，安装好centos7系统（当然也可以其他系统）。
+1. 买一台vps，我买的是[vultr](https://www.vultr.com/?ref=7367428)，安装好centos7系统（当然也可以其他系统）。
 2. 在终端或者其他ssh客户端（putty），ssh root@[你服务器的ip]连接你的服务器。
 3. 执行：
 > wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh 
