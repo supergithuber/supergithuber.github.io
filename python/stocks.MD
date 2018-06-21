@@ -182,3 +182,7 @@ all.to_excel('./今日股票数据.xlsx')
 print(ts.get_today_all())
 
 ```
+
+### 3.参考资料
+
+1. [tushare官方文档](http://tushare.org/index.html)
