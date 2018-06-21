@@ -6,6 +6,8 @@
 
 * [Server](https://supergithuber.github.io/vps/vps_index)
 
+* [Python](https://supergithuber.github.io/python/python_index)
+
 
 
 ### 支持与联系
