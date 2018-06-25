@@ -110,6 +110,7 @@ year = [i for i in range(len(d['close']))]
 file = open('/Users/hfy/Documents/600848_year.json','w')
 file.write(str(year))
 file.close()
+//使用这段代码需要修改：1. 股票代码；2. 文件路径
 ```
 
 把某支股票每日的收盘数据写入到文件中，这里会生成两个文件:
@@ -117,7 +118,9 @@ file.close()
 + 一个包含每天的收盘股价，是一个数组
 + 一个是我自己生成的线性数组，代表每一天。天数取决于第一个文件有多少个样本
 
-然后把这两个数组粘贴到Echarts对应的表格中，就可以看到一个股价变化表:
+然后把这两个数组粘贴到[Echarts](http://echarts.baidu.com/examples/)对应的表格中，就可以看到一个股价变化表:
+
+> ECharts对应的example的右下角可以下载一个对应的HTML，只需要修改数据即可，下载后修改的样例代码[line-stack](https://supergithuber.github.io/code/line-stack.html)
 
 ![stock_price](https://supergithuber.github.io/img2/stock_price.png)
 
