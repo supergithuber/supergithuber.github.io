@@ -13,7 +13,7 @@ pip install lxml   ///xml解析
 
 ### 2. 范例
 
-* 代码
+#### 2.1 代码1
 
 ```
 import tushare as ts  
@@ -100,7 +100,28 @@ date                               ...
 Process finished with exit code 0
 ```
 
-* 一些其他用法
+#### 2.2 代码2
+
+```
+import tushare as ts
+d = ts.get_h_data('600848', '2008-01-01', '2018-01-01')
+d['close'].to_json('/Users/hfy/Documents/600848.json',orient='records')
+year = [i for i in range(len(d['close']))]
+file = open('/Users/hfy/Documents/600848_year.json','w')
+file.write(str(year))
+file.close()
+```
+
+把某支股票每日的收盘数据写入到文件中，这里会生成两个文件:
+
++ 一个包含每天的收盘股价，是一个数组
++ 一个是我自己生成的线性数组，代表每一天。天数取决于第一个文件有多少个样本
+
+然后把这两个数组粘贴到Echarts对应的表格中，就可以看到一个股价变化表:
+
+![stock_price](https://supergithuber.github.io/img2/stock_price.png)
+
+#### 一些其他用法
 
 ```
 print('数据来源版本:'+ts.__version__)
