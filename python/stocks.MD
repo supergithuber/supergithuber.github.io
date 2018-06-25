@@ -120,7 +120,7 @@ file.close()
 
 然后把这两个数组粘贴到[Echarts](http://echarts.baidu.com/examples/)对应的表格中，就可以看到一个股价变化表:
 
-> ECharts对应的example的右下角可以下载一个对应的HTML，只需要修改数据即可，下载后修改的样例代码[line-stack](https://supergithuber.github.io/code/line-stack.html)
+> ECharts对应的example的右下角可以下载一个对应的HTML，只需要修改数据即可，下载后修改的样例代码[line-stack](https://github.com/supergithuber/supergithuber.github.io/blob/master/code/line-stack.html)
 
 ![stock_price](https://supergithuber.github.io/img2/stock_price.png)
 
