@@ -8,6 +8,8 @@
 
 * [Python](https://supergithuber.github.io/python/python_index)
 
+* [Algorithm](https://supergithuber.github.io/algorithm/algorithm_index)
+
 
 
 ### 支持与联系
