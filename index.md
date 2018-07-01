@@ -10,7 +10,7 @@
 
 * [Algorithm](https://supergithuber.github.io/algorithm/algorithm_index)
 
-* [dataStructure](https://supergithuber.github.io/algorithm/dataStructure_index)
+* [DataStructure](https://supergithuber.github.io/dataStructure/dataStructure_index)
 
 
 
