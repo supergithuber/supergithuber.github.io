@@ -2,7 +2,7 @@
 
 WKNavigationDelegate的方法比之前UIWebViewDelegate的多了好多，一共有10个，有的根据方法名还不好理解，记录下。
 
-```objectiveC
+```objc
 //请求之前，决定是否要跳转:用户点击网页上的链接，需要打开新页面时，将先调用这个方法。
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler;
 //接收到相应数据后，决定是否跳转
