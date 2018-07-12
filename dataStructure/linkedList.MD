@@ -20,3 +20,29 @@ public class Link {
     }
 }
 ```
+
+采用随机数，生成一个链表:
+
+```java
+public static Link init(int count, int maxValue)
+{
+    Link list = new Link();
+    Link temp = list;
+    Random r = new Random();
+    temp.set_Value(Integer.MIN_VALUE);
+    for (int i = 0; i < count; i++)
+    {
+        Link node = new Link();
+        node.set_Value(r.nextInt(maxValue));
+        temp.set_Next(node);
+        temp=node;
+    }
+    temp.set_Next(null);
+    return list;
+}
+
+public static Link init(int count)
+{
+    return init(count, Integer.MAX_VALUE);
+}
+```
