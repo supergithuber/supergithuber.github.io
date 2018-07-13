@@ -46,3 +46,40 @@ public static Link init(int count)
     return init(count, Integer.MAX_VALUE);
 }
 ```
+
+一些常见问题：
+
+#### 1. 链表反转
+
+采用非递归的方式，从头到尾遍历链表，修改每个节点的next指针：
+
+```java
+public static Link Reverve(Link list)
+{
+    if (list == null || list.get_Next() == null || list.get_Next().get_Next() == null)
+    {
+        System.out.println("list is null or just contains 1 element, so do not need to reverve.");
+        return list;
+    }        
+    Link current = list.get_Next();
+    Link next = current.get_Next();
+    current.set_Next(null);
+    while(next != null)
+    {
+       Link temp = next.get_Next();
+       next.set_Next(current);
+       current = next;
+       next = temp;
+    }
+    list.set_Next(current);
+       
+    return list;
+}
+
+```
+
+采用递归的方式逆转链表：
+
+```java
+
+```
