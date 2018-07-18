@@ -47,6 +47,27 @@ public static Link init(int count)
 }
 ```
 
+打印一下链表：
+
+```java
+public static void printList(Link list)
+{
+   if (list == null || list.get_Next() == null)
+   {
+      System.out.println("The list is null or empty.");
+      return;
+   }
+   Link temp = list.get_Next();
+   StringBuffer sb = new StringBuffer();
+   while(temp != null)
+   {
+      sb.append(temp.get_Value() + "->");
+      temp=temp.get_Next();
+   }
+   System.out.println(sb.substring(0, sb.length() - 2));
+}
+```
+
 一些常见问题：
 
 #### 1. 链表反转
