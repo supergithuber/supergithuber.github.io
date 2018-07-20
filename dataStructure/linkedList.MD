@@ -102,5 +102,30 @@ public static Link Reverve(Link list)
 采用递归的方式逆转链表：
 
 ```java
+public static Link RecursiveReverse(Link list)
+{
+    if (list == null || list.get_Next() == null || list.get_Next().get_Next() == null)
+    {
+        System.out.println("list is null or just contains 1 element, so do not need to reverve.");
+        return list;
+    }
+   
+    list.set_Next(Recursive(list.get_Next()));
+   
+    return list;
+}
+ 
+private static Link Recursive(Link list)
+{
+    if (list.get_Next() == null)
+    {
+       return list;
+    }
+    Link temp = Recursive(list.get_Next());
+    list.get_Next().set_Next(list);
+    list.set_Next(null);
+    
+    return temp;
+}
 
 ```
