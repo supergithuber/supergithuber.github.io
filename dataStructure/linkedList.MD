@@ -218,3 +218,34 @@ public static void removeDuplicate(Link list)
     }        
 }
 ```
+
+#### 5.寻找链表中间节点
+
+采用两个游标的方式，第一个游标每次前进两步，第二个游标每次前进一步，当第一个游标到最后时，第二个游标就是中间位置。需要注意的是，如果链表元素的个数是偶数，那么中间元素应该是两个。
+
+```java
+public static void Sort(Link list)
+{
+    if (list == null || list.get_Next() == null || list.get_Next().get_Next() == null)
+    {
+        return;
+    }
+    Link current = list.get_Next();
+    Link next = current.get_Next();
+    while(current.get_Next() != null)
+    {
+        while(next != null)
+        {
+            if (current.get_Value() > next.get_Value())
+            {
+                int temp = current.get_Value();
+                current.set_Value(next.get_Value());
+                next.set_Value(temp);
+            }
+            next = next.get_Next();
+         }
+         current = current.get_Next();
+         next = current.get_Next();
+    }
+}
+```
