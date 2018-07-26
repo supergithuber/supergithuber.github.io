@@ -370,3 +370,132 @@ public static boolean isJoint(Link list1, Link list2)
     return node1 == node2;
 }
 ```
+
+#### 9.合并两个有序链表
+
+新建一个链表，然后同时遍历两个有序链表，比较其大小，将元素较小的链表向前移动，直至某一个链表元素为空。然后将非空链表上的所有元素追加到新建链表中
+
+```java
+public static Link merge(Link list1, Link list2)
+{
+    Link list = new Link();
+    list.set_Value(Integer.MIN_VALUE);
+    Link current1 = list1.get_Next();
+    Link current2 = list2.get_Next();
+    Link current = list;
+    while(current1 != null && current2 != null)
+    {
+        Link temp = new Link();
+        if (current1.get_Value() > current2.get_Value())
+        {
+            temp.set_Value(current2.get_Value());
+            current2 = current2.get_Next();
+        }
+        else{
+            temp.set_Value(current1.get_Value());
+            current1 = current1.get_Next();
+        }
+        current.set_Next(temp);
+        current = temp;
+    }
+    if (current1 != null)
+    {
+        while(current1 != null)
+        {
+            Link temp = new Link();
+            temp.set_Value(current1.get_Value());
+            current.set_Next(temp);
+            current = temp;
+            current1 = current1.get_Next();
+        }
+    }
+ 
+    if (current2 != null)
+    {
+        while(current2 != null)
+        {
+            Link temp = new Link();
+            temp.set_Value(current2.get_Value());
+            current.set_Next(temp);
+            current = temp;
+            current2 = current2.get_Next();
+        }
+    }
+  
+    current.set_Next(null);
+  
+    return list;
+}
+```
+
+#### 10.交换链表中任意两个元素（非头结点）
+
+首先需要保存两个元素的pre节点和next节点，然后分别对pre节点和next节点的Next属性重新赋值。需要注意的是，当两个元素师相邻元素时，需要特殊处理，否则会将链表陷入死循环。
+
+```java
+public static void swap(Link list, Link element1, Link element2)
+{
+    if (list == null || list.get_Next() == null || list.get_Next().get_Next() == null || element1 == null || element2 == null || element1 == element2)
+    { 
+        return;
+    }
+    Link pre1 = null, pre2 = null, next1 = null, next2 = null;
+    Link cur1=element1, cur2=element2;
+    Link temp = list.get_Next();
+    boolean bFound1 = false;
+    boolean bFound2 = false;
+    while(temp != null)
+    {
+        if(temp.get_Next() == cur1)
+        {
+            pre1=temp;
+            next1 = temp.get_Next().get_Next();
+            bFound1 = true;
+        }
+        if (temp.get_Next() == cur2)
+        {
+            pre2 = temp;
+            next2 = temp.get_Next().get_Next();
+            bFound2=true;
+        }
+        if (bFound1 && bFound2) break;
+        temp = temp.get_Next();
+    }
+  
+    if (cur1.get_Next() == cur2)
+    {
+        temp = cur2.get_Next();
+        pre1.set_Next(cur2);
+        cur2.set_Next(cur1);
+        cur1.set_Next(temp);
+    }
+    else if (cur2.get_Next() == cur1)
+    {
+        temp = cur1.get_Next();
+        pre2.set_Next(cur1);
+        cur1.set_Next(cur2);
+        cur2.set_Next(temp);
+    }
+    else{
+        pre1.set_Next(cur2);
+        cur1.set_Next(next2);
+        pre2.set_Next(cur1);
+        cur2.set_Next(next1);
+    }
+}
+```
+
+还有另外一种取巧的方法，就是直接交换两个元素的值
+
+```java
+public static void swapValue(Link list, Link element1, Link element2)
+{
+    if (element1 == null || element2 == null)
+    {
+        return;
+    }
+    int temp = element1.get_Value();
+    element1.set_Value(element2.get_Value());
+    element2.set_Value(temp);
+}
+```
