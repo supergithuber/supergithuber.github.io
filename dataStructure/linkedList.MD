@@ -249,3 +249,124 @@ public static void Sort(Link list)
     }
 }
 ```
+
+#### 6.链表元素排序
+
+链表元素排序，有两种方式，一种是链表元素本身的排序，一种是链表元素值得排序。第二种方式更简单、灵活一些。
+
+```java
+public static void Sort(Link list)
+{
+    if (list == null || list.get_Next() == null || list.get_Next().get_Next() == null)
+    {
+        return;
+    }
+    Link current = list.get_Next();
+    Link next = current.get_Next();
+    while(current.get_Next() != null)
+    {
+        while(next != null)
+        {
+            if (current.get_Value() > next.get_Value())
+            {
+                int temp = current.get_Value();
+                current.set_Value(next.get_Value());
+                next.set_Value(temp);
+            }
+            next = next.get_Next();
+        }
+        current = current.get_Next();
+        next = current.get_Next();
+    }
+}
+```
+
+#### 7.判断链表是否有环，如果有，找出环上的第一个节点
+
+可以采用两个游标的方式判断链表是否有环，一个游标跑得快，一个游标跑得慢。当跑得快的游标追上跑得慢的游标时，说明有环；当跑得快的游标跑到尾节点时，说明无环
+
+至于如何找出换上第一个节点，可以分两步，首先确定环上的某个节点，计算头结点到该节点的距离以及该节点在环上循环一次的距离，然后建立两个游标，分别指向头结点和环上的节点，并将距离平摊（哪个距离大，先移动哪个游标，直至两个距离相等），最后同时移动两个游标，碰到的第一个相同元素，就是环中的第一个节点
+
+```java
+public static Link getLoopStartNode(Link list)
+{
+    if (list == null || list.get_Next() == null || list.get_Next().get_Next() == null)
+    {
+        return null;
+    }
+    int m = 1, n = 1;
+    Link fast = list.get_Next();
+    Link slow = list.get_Next();
+    while(fast != null && fast.get_Next() != null)
+    {
+        fast = fast.get_Next().get_Next();
+        slow = slow.get_Next();
+        if (fast == slow) break;
+        m++;
+    }
+    if (fast != slow)
+    {
+        return null;
+    }
+    Link temp = fast;
+    while(temp.get_Next() != fast)
+    {
+        temp = temp.get_Next();
+        n++;
+    }
+    Link node1 = list.get_Next();
+    Link node2 = fast;
+    if (m < n)
+    {
+        for (int i = 0; i < n - m; i++)
+        {
+            node2 = node2.get_Next();
+        }
+    }
+    if (m > n)
+    {
+        for (int i = 0; i < m - n; i++)
+        {
+            node1 = node1.get_Next();
+        }
+    }
+    while(true)
+    {
+        if (node1 == node2)
+        {
+            break;
+        }
+        node1 = node1.get_Next();
+        node2 = node2.get_Next();
+    }
+    
+    return node1;
+        
+}
+```
+
+#### 8.判断两个链表是否相交
+
+判断两个链表的尾节点是否相同，如果相同，一定相交
+
+```java
+public static boolean isJoint(Link list1, Link list2)
+{
+    if (list1 == null || list2 == null || list1.get_Next() == null || list2.get_Next() == null)
+    {
+        return false;
+    }
+    Link node1 = list1;
+    Link node2 = list2;
+    while(node1.get_Next() != null)
+    {
+        node1 = node1.get_Next();
+    }
+    while(node2.get_Next() != null)
+    {
+        node2 = node2.get_Next();
+    }
+          
+    return node1 == node2;
+}
+```
