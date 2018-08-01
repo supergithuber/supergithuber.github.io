@@ -127,3 +127,139 @@ public class Queue {
     }
 }
 ```
+
+### 1. 用两个栈实现一个队列
+
+两个栈一个作为入值栈，一个作为出值栈，当执行Push操作时，将值压入入值栈，当执行Pop或者Peek操作时，取出值栈的栈顶元素，当出值栈为空时，需要将入值栈的元素依次压入出值栈
+
+```java
+public class NewQueue {
+    private Stack inStack;
+    private Stack outStack;
+ 
+    public NewQueue(int capacity)
+    {
+        inStack = new Stack(capacity);
+        outStack = new Stack(capacity);
+    }
+     
+    public void enQueue(int value)
+    {
+        inStack.push(value);
+    }
+       
+    public int deQueue()
+    {
+        if(inStack.get_Count() == 0 && outStack.get_Count() == 0)
+        {
+            System.out.println("The queue is empty.");
+            return Integer.MIN_VALUE;
+        }
+        if (outStack.get_Count() == 0)
+        {
+            while(inStack.get_Count() > 0)
+            {
+                outStack.push(inStack.pop());
+            }
+        }
+        return outStack.pop();
+    }
+     
+    public int get_Count()
+    {
+        return inStack.get_Count() + outStack.get_Count();
+    }
+}
+```
+
+### 2. 用两个队列实现一个栈
+
+根据“后进先出”和“先进后出”的特点，在运行过程中，其中一个队列应该一直为空，对于push操作，将值放到非空队列中，当进行Push或者Pop操作时，先将非空队列全部导入空队列，然后此时的非空队列的头元素就是我们期望的元素。
+
+```java
+public class NewStack3 {
+
+    private Queue queue1;
+    private Queue queue2;
+     
+    public NewStack3(int capacity)
+    {
+        queue1 = new Queue(capacity);
+        queue2 = new Queue(capacity);
+    }
+      
+    public void push(int value)
+    {
+        if (queue1.get_Count() == 0)
+        {
+            queue2.enQueue(value);
+        }
+        else{
+            queue1.enQueue(value);
+        }
+    }
+     
+    public int peek()
+    {
+        if (queue1.get_Count() == 0 && queue2.get_Count() == 0)
+        {
+            System.out.println("The stack is empty.");
+            return Integer.MIN_VALUE;
+        }
+        int result = Integer.MIN_VALUE;
+        if (queue1.get_Count() > 0 && queue2.get_Count() == 0)
+        {
+            while(queue1.get_Count() > 1)
+            {
+                queue2.enQueue(queue1.deQueue());
+            }
+            result = queue1.deQueue();
+            queue2.enQueue(result);
+        }
+        else if (queue1.get_Count() == 0 && queue2.get_Count() > 0)
+        {
+            while(queue2.get_Count() > 1)
+            {
+                queue1.enQueue(queue2.deQueue());
+            }
+            result = queue2.deQueue();
+            queue1.enQueue(result);
+        }
+      
+        return result;
+    }
+     
+    public int pop()
+    {
+        if (queue1.get_Count() == 0 && queue2.get_Count() == 0)
+        {
+            System.out.println("The stack is empty.");
+            return Integer.MIN_VALUE;
+        }
+        int result = Integer.MIN_VALUE;
+        if (queue1.get_Count() > 0 && queue2.get_Count() == 0)
+        {
+            while(queue1.get_Count() > 1)
+            {
+                queue2.enQueue(queue1.deQueue());
+            }
+            result = queue1.deQueue();
+        }
+        else if (queue1.get_Count() == 0 && queue2.get_Count() > 0)
+        {
+            while(queue2.get_Count() > 1)
+            {
+                queue1.enQueue(queue2.deQueue());
+            }
+            result = queue2.deQueue();
+        }
+    
+        return result;
+    }
+    
+    public int get_Count()
+    {
+        return queue1.get_Count() + queue2.get_Count();
+    }
+}
+```
