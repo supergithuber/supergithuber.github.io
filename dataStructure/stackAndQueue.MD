@@ -263,3 +263,29 @@ public class NewStack3 {
     }
 }
 ```
+
+### 3.递归反转一个栈
+
+递归反转一个栈，要求不能重建一个新栈，空间复杂度为O(1)
+
+```java
+public static void Reverse(Stack stack)
+{
+    if (stack.get_Count() == 0)
+    {
+        return;
+    }
+    int value1 = stack.pop();
+    Reverse(stack);
+    if (stack.get_Count() == 0)
+    {
+        stack.push(value1);
+        return;
+    }
+    int value2 = stack.pop();
+    Reverse(stack);
+    stack.push(value1);
+    Reverse(stack);
+    stack.push(value2);
+}
+```
