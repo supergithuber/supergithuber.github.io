@@ -289,3 +289,34 @@ public static void Reverse(Stack stack)
     stack.push(value2);
 }
 ```
+
+### 4.递归对栈进行排序
+
+```java
+public static void sort(Stack stack)
+{
+    if (stack.get_Count() == 0)
+    {
+        return;
+    }
+    int value1 = stack.pop();
+    sort(stack);
+    if (stack.get_Count() == 0)
+    {
+        stack.push(value1);
+        return;
+    }
+    int value2 = stack.pop();
+    if (value1 > value2)
+    {
+        stack.push(value1);
+        sort(stack);
+        stack.push(value2);
+    }
+    else{
+        stack.push(value2);
+        sort(stack);
+        stack.push(value1);
+    }
+}
+```
