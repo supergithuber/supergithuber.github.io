@@ -320,3 +320,35 @@ public static void sort(Stack stack)
     }
 }
 ```
+
+### 5.判断栈的push、pop序列是否为一个栈
+
+创建一个新栈，依次将push队列中的值压入，在压入过程中，判断pop队列，如果找到相同的值，执行stack.pop操作，以此类推，最终判断stack是否为空。
+
+```java
+public static boolean isMatch(int[] arrPush, int[] arrPop)
+{
+    if (arrPush == null || arrPop == null || arrPush.length != arrPop.length)
+    {
+        return false;
+    }
+    Stack stack = new Stack(arrPush.length);        
+    for(int i = 0, j = 0; i < arrPush.length; i++)
+    {
+        stack.push(arrPush[i]);
+        while(j < arrPop.length)
+        {
+            if (stack.peek() == arrPop[j])
+            {
+                stack.pop();
+                j++;
+            }
+            else{
+                break;
+            }
+        }
+    }
+    
+    return stack.get_Count() == 0;
+}
+```
