@@ -352,3 +352,139 @@ public static boolean isMatch(int[] arrPush, int[] arrPop)
     return stack.get_Count() == 0;
 }
 ```
+
+### 4.用一个数组实现两个栈
+
+用0、2、4、6……表示第一个栈的元素，用1、3、5、7表示第二个栈的元素
+
+```java
+public class NewStack4 {
+    private int[] arrValue;
+    private int capacity;
+    private int m_Count1;
+    private int m_Count2;
+     
+    public NewStack4(int capacity)
+    {
+        arrValue = new int[capacity];
+        this.capacity = capacity;
+        m_Count1 = 0;
+        m_Count2 = 0;
+    }
+
+    public void push(int value, int type)
+    {
+        boolean bExtend = false;
+        if (type == 1)
+        {
+            if (m_Count1 * 2 + 1 >= capacity)
+            {
+                bExtend = true;
+            }
+        }
+        if (type == 2)
+        {
+            if (m_Count2 * 2 + 2 >= capacity)
+            {
+                bExtend=true;
+            }
+        }
+        if (bExtend)
+        {
+            int[] temp = new int[capacity*2];
+            capacity = capacity*2;
+            for(int i = 0; i < arrValue.length; i++)
+            {
+                temp[i] = arrValue[i];
+            }
+            arrValue = temp;
+        }
+    
+        if (type == 1)
+        {
+            m_Count1++;
+            arrValue[m_Count1*2 - 1] = value;
+        }
+      
+        if (type == 2)
+        {
+            m_Count2++;
+            arrValue[m_Count2*2] = value;
+        }
+    }
+     
+    public int peek(int type)
+    {
+        if (type == 1)
+        {
+            if (m_Count1 == 0)
+            {
+                System.out.println("Stack 1 is empty.");
+                return Integer.MIN_VALUE;
+            }
+            else {
+                return arrValue[m_Count1*2 - 1];
+            }
+        }        
+        if (type == 2)
+        {
+            if (m_Count2 == 0)
+            {
+                System.out.println("Stack 1 is empty.");
+                return Integer.MIN_VALUE;
+            }
+            else {
+                return arrValue[m_Count2*2];
+            }
+        }
+      
+        return Integer.MIN_VALUE;
+    }
+      
+    public int pop(int type)
+    {
+        if (type == 1)
+        {
+            if (m_Count1 == 0)
+            {
+                System.out.println("Stack 1 is empty.");
+                return Integer.MIN_VALUE;
+            }
+            else {
+                int result = arrValue[m_Count1*2 - 1];
+                m_Count1--;
+                return result;
+            }
+        }        
+        if (type == 2)
+        {
+            if (m_Count2 == 0)
+            {
+                System.out.println("Stack 1 is empty.");
+                return Integer.MIN_VALUE;
+            }
+            else{
+                int result =arrValue[m_Count2*2];
+                m_Count2--;
+                return result;
+            }
+        }
+ 
+        return Integer.MIN_VALUE;
+    }
+ 
+    public int get_Count(int type)
+    {
+        if (type == 1)
+        {
+            return m_Count1;
+        }
+        else if (type == 2)
+        {
+            return m_Count2;
+        }
+        return Integer.MIN_VALUE;
+    }
+     
+}
+```
