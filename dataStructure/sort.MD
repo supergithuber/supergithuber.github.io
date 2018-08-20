@@ -42,3 +42,32 @@ private static void printArray(int[] array)
     System.out.println(sb.substring(0, sb.length() - 2));
 }
 ```
+
+### 1. 插入排序
+
+它的基本思想是将一个元素插入到一个已排序的序列中，构成一个更大的序列。直接插入排序和希尔排序（shell）都属于插入排序。
+
+```java
+public static void insertSort(int[] arrValue)
+{
+    if (arrValue == null || arrValue.length < 2) return;
+    printArray(arrValue);
+    for (int i = 1; i < arrValue.length; i++)
+    {
+        int temp = arrValue[i];
+        int j = i;
+        for (j = i; j > 0; j--)
+        {
+            if (arrValue[j - 1] > temp)
+            {
+                arrValue[j] = arrValue[j - 1];
+            }
+            else{
+                break;
+            }
+        }
+    arrValue[j] = temp;
+    printArray(arrValue);    
+    }
+}
+```
