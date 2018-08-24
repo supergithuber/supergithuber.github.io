@@ -90,7 +90,50 @@ public static void insertSort(int[] arrValue)
 
 * 希尔排序
 
-
-
 ```java
+public static void shellSort(int[] arrValue)
+{
+    if (arrValue == null || arrValue.length < 2) return;
+    int length = arrValue.length/2;
+    printArray(arrValue);
+    while(length >= 1)
+    {
+        shell(arrValue, length);
+        length = length/2;
+    }
+}
+
+private static void shell(int[] arrValue, int d)
+{
+    for(int i = d; i < arrValue.length; i++)
+    {
+        if (arrValue[i] < arrValue[i -d])
+        {
+            int temp = arrValue[i];
+            int j = i;
+            while(j >= d)
+            {
+                if (arrValue[j-d] > temp) 
+                {
+                    arrValue[j] = arrValue[j - d];
+                    j = j - d;
+                }
+                else{
+                    break;
+                }                
+            }
+            arrValue[j] = temp;
+        }
+        printArray(arrValue);
+    }
+}
+```
+
+结果
+
+```
+14->21->1->26->6->40->5->46->9->25
+14->5->1->9->6->40->21->46->26->25
+1->5->6->9->14->25->21->40->26->46
+1->5->6->9->14->21->25->26->40->46
 ```
