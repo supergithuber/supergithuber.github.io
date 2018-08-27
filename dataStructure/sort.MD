@@ -137,3 +137,28 @@ private static void shell(int[] arrValue, int d)
 1->5->6->9->14->25->21->40->26->46
 1->5->6->9->14->21->25->26->40->46
 ```
+
+### 2.交换排序
+
+* 冒泡排序
+
+```java
+public static void bubbleSort(int[] arrValue)
+{
+    if (arrValue == null || arrValue.length < 2) return;
+    printArray(arrValue);
+    for(int i = 0; i < arrValue.length; i++)
+    {
+        for(int j = i+ 1; j < arrValue.length; j++)
+        {
+            if (arrValue[i] > arrValue[j])
+            {
+                int temp = arrValue[i];
+                arrValue[i] = arrValue[j];
+                arrValue[j] = temp;
+            }
+        }
+        printArray(arrValue);
+    }
+}
+```
