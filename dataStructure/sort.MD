@@ -162,3 +162,88 @@ public static void bubbleSort(int[] arrValue)
     }
 }
 ```
+
+运行结果
+
+```
+35->2->19->37->43->47->39->34->21->0
+0->35->19->37->43->47->39->34->21->2
+0->2->35->37->43->47->39->34->21->19
+0->2->19->37->43->47->39->35->34->21
+0->2->19->21->43->47->39->37->35->34
+0->2->19->21->34->47->43->39->37->35
+0->2->19->21->34->35->47->43->39->37
+0->2->19->21->34->35->37->47->43->39
+0->2->19->21->34->35->37->39->47->43
+0->2->19->21->34->35->37->39->43->47
+0->2->19->21->34->35->37->39->43->47
+```
+
+* 快速排序
+
+```java
+public static void quickSort(int[] arrValue, int left, int right)
+{
+    if(left < right)
+    {
+        int i = division(arrValue, left, right);
+        quickSort(arrValue, left, i - 1);
+        quickSort(arrValue, i + 1, right);
+    }
+}
+ 
+private static int division(int[] arrValue, int left, int right)
+{
+    int baseValue = arrValue[left];
+    int midPos = left;
+    printArray(arrValue);
+    for (int i = left + 1; i <= right; i++)
+    {
+        if(arrValue[i] < baseValue) midPos++;
+    }
+      
+    if (midPos == left)
+    {
+        return midPos;
+    }
+     
+    arrValue[left] = arrValue[midPos]; 
+    arrValue[midPos] = baseValue;
+    
+    if (midPos == right)
+    {
+        return midPos;
+    }
+    for (int i = left; i < midPos; i++)
+    {
+        if (arrValue[i] > baseValue)
+        {
+            for (int j = right; j > midPos; j--)
+            {
+                if (arrValue[j] < baseValue)
+                {
+                    int temp = arrValue[i];
+                    arrValue[i] = arrValue[j];
+                    arrValue[j] = temp;
+                    right--;
+                    break;
+                }
+            }
+        }
+    }
+          
+    return midPos;
+}
+```
+
+运行结果
+
+```
+14->5->36->17->34->2->47->7->22->42
+7->5->2->14->34->36->47->17->22->42
+2->5->7->14->34->36->47->17->22->42
+2->5->7->14->34->36->47->17->22->42
+2->5->7->14->22->17->34->36->47->42
+2->5->7->14->17->22->34->36->47->42
+2->5->7->14->17->22->34->36->47->42
+```
