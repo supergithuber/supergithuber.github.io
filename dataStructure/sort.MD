@@ -254,8 +254,114 @@ private static int division(int[] arrValue, int left, int right)
 
 * 简单选择排序
 
+```java
+public static void selectSort(int[] arrValue)
+{
+    if (arrValue == null || arrValue.length < 2) return;
+    printArray(arrValue);
+    for (int i = 0; i < arrValue.length; i++)
+    {
+        int minValue = arrValue[i];
+        int minIndex = i;
+        for (int j = i; j < arrValue.length; j++)
+        {
+            if (arrValue[j] < minValue) 
+            {
+                minIndex = j;
+                minValue = arrValue[j]; 
+            }
+        }
+        if (i != minIndex)
+        {
+            int temp = arrValue[i];
+            arrValue[i] = arrValue[minIndex];
+            arrValue[minIndex] = temp;
+        }
+        printArray(arrValue);
+    }
+}
+
+```
+
+运行结果
+
+```
+43->28->29->31->37->32->27->36->12->3
+3->28->29->31->37->32->27->36->12->43
+3->12->29->31->37->32->27->36->28->43
+3->12->27->31->37->32->29->36->28->43
+3->12->27->28->37->32->29->36->31->43
+3->12->27->28->29->32->37->36->31->43
+3->12->27->28->29->31->37->36->32->43
+3->12->27->28->29->31->32->36->37->43
+3->12->27->28->29->31->32->36->37->43
+3->12->27->28->29->31->32->36->37->43
+3->12->27->28->29->31->32->36->37->43
+```
 
 * 堆排序
+
+```java
+public static void heapSort(int[] arrValue)
+{
+    if (arrValue == null || arrValue.length < 2) return;
+    printArray(arrValue);
+    for (int i = arrValue.length/2 - 1; i>=0; i--)
+    {
+        heapAdjust(arrValue, i, arrValue.length);
+    }
+    printArray(arrValue);
+    for (int i = arrValue.length - 1; i > 0; i--)
+    {
+        int temp = arrValue[0];
+        arrValue[0] = arrValue[i];
+        arrValue[i] = temp;
+             
+        heapAdjust(arrValue, 0, i);
+        printArray(arrValue);
+    }
+    
+}
+    
+private static void heapAdjust(int[] arrValue, int parent, int length)
+{
+    int child = 2* parent + 1;
+    int temp = arrValue[parent];
+    while(child < length)
+    {
+        if (child + 1 < length && arrValue[child] < arrValue[child + 1])
+        {
+            child = child + 1;
+        }
+        if (temp > arrValue[child])
+        {
+            break;
+        }
+        arrValue[parent] = arrValue[child];
+      
+        parent = child;
+        child = parent * 2 + 1;
+        
+    }
+    arrValue[parent] = temp;
+}
+```
+
+运行结果
+
+```
+4->26->29->7->30->2->19->42->13->46
+46->42->29->13->30->2->19->7->4->26
+42->30->29->13->26->2->19->7->4->46
+30->26->29->13->4->2->19->7->42->46
+29->26->19->13->4->2->7->30->42->46
+26->13->19->7->4->2->29->30->42->46
+19->13->2->7->4->26->29->30->42->46
+13->7->2->4->19->26->29->30->42->46
+7->4->2->13->19->26->29->30->42->46
+4->2->7->13->19->26->29->30->42->46
+2->4->7->13->19->26->29->30->42->46
+```
 
 ### 4. 归并排序
 
