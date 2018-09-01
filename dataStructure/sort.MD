@@ -365,6 +365,139 @@ private static void heapAdjust(int[] arrValue, int parent, int length)
 
 ### 4. 归并排序
 
+```java
+public static void mergeSort(int[] arrValue, int start, int end)
+{
+    if (arrValue == null || arrValue.length < 2) return;
+    if (start + 1 < end)
+    {
+        int mid = (start + end)/2;
+        mergeSort(arrValue, start, mid);
+        mergeSort(arrValue, mid, end);
+        merge(arrValue, start, mid, end);
+        printArray(arrValue);
+    }
+    
+}
+
+private static void merge(int[] arrValue, int start, int mid, int end)
+{
+    int[] temp = new int[end - start];
+    
+    int index1 = start;
+    int index2 = mid;
+    int index = 0;
+    while(index1 < mid && index2 < end)
+    {
+        if (arrValue[index1] < arrValue[index2])
+        {
+            temp[index] = arrValue[index1];
+            index1++;
+        }
+        else{
+            temp[index] = arrValue[index2];
+            index2++;
+        }
+        index++;
+    }
+  
+    if (index1 < mid)
+    {
+        while(index1 < mid)
+        {
+            temp[index] = arrValue[index1];
+            index1++;
+            index++;
+        }
+    }
+  
+    if (index2 < end)
+    {
+        while(index2 < mid)
+        {
+            temp[index] = arrValue[index2];
+            index2++;
+            index++;
+        }
+    }
+
+    for (int i = 0; i < index; i++)
+    {
+        arrValue[start + i] = temp[i];
+    }
+}
+```
+
+运行结果
+
+```
+41->49->9->31->23->0->25->2->6->7
+41->49->9->23->31->0->25->2->6->7
+41->49->9->23->31->0->25->2->6->7
+9->23->31->41->49->0->25->2->6->7
+9->23->31->41->49->0->25->2->6->7
+9->23->31->41->49->0->25->2->6->7
+9->23->31->41->49->0->25->2->6->7
+9->23->31->41->49->0->2->6->7->25
+0->2->6->7->9->23->25->31->41->49
+```
+
 ### 5. 基数排序
+
+基数排序的思想和桶排序类似，它首先按照个位数值将序列放入到0-9共10个桶中，然后依次输出，接着，对新的序列按照十位数值再次放入桶中，然后再输出，以此类推，直到所有树的位数都遍历完毕，就可以得到排好序的序列。
+
+```java
+public static void radixSort(int[] arrValue)
+{
+    if (arrValue == null || arrValue.length < 2) return;
+     
+    HashMap<Integer, List<Integer>> map = new HashMap<Integer, List<Integer>>();
+    int base = 10;
+    printArray(arrValue);
+    while(isNeedContinue(arrValue, base))
+    {
+        map.clear();
+        for (int i = 0; i < arrValue.length; i++)
+        {
+            int key = arrValue[i]%base/(base/10);
+            if (!map.containsKey(key))
+            {
+                map.put(key, new ArrayList<Integer>());
+            }
+            map.get(key).add(arrValue[i]);
+        }
+        for (int i = 0, j = 0; i < 10; i++)
+        {
+            if (map.containsKey(i))
+            {
+                for(Integer value : map.get(i))
+                {
+                    arrValue[j] = value;
+                    j++;
+                }
+            }
+        }
+        base = base*10;
+        printArray(arrValue);
+    }
+}
+    
+private static boolean isNeedContinue(int[] arrValue, int base)
+{
+    for(int i = 0; i < arrValue.length; i++)
+    {
+        if (base/10 <= arrValue[i]) return true;
+    }
+    return false;
+}
+```
+
+运行结果
+
+```
+38->16->48->27->45->44->3->22->14->42
+22->42->3->44->14->45->16->27->38->48
+3->14->16->22->27->38->42->44->45->48
+```
 
 ### 6. 其他排序
