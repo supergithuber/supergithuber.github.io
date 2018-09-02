@@ -501,3 +501,49 @@ private static boolean isNeedContinue(int[] arrValue, int base)
 ```
 
 ### 6. 其他排序
+
+* 计数排序
+
+它对于不重复序列排序来说，有时是一个很好的选择，它会首先计算序列的最小值和最大值，创建一个flag数组，数组长度为最大值和最小值之差，然后遍历序列，更新flag数组，最后遍历flag数组，输出排序结果
+
+
+```java
+public static void smartSort(int[] arrValue)
+{
+    if (arrValue == null || arrValue.length < 2) return;
+    int min = arrValue[0];
+    int max = arrValue[0];
+    printArray(arrValue);
+    for (int i = 1; i < arrValue.length; i++)
+    {
+        if (arrValue[i] < min) min = arrValue[i];
+        if (arrValue[i] > max) max = arrValue[i];
+    }
+    int[] arrFlag = new int[max - min + 1];
+    for (int i = 0; i < arrFlag.length; i++) arrFlag[i] = 0;
+    printArray(arrFlag);
+    for (int i = 0; i < arrValue.length; i++)
+    {
+        arrFlag[arrValue[i] - min] = 1;
+    }
+    printArray(arrFlag);
+    for(int i = 0, j = 0; i < arrFlag.length; i++)
+    {
+        if (arrFlag[i] == 1)
+        {
+            arrValue[j] = i + min;
+            j++;
+        }
+    }
+    printArray(arrValue);
+}
+```
+
+运行结果
+
+```
+2->32->35->0->38->26->21->10->22->5
+0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0->0
+1->0->1->0->0->1->0->0->0->0->1->0->0->0->0->0->0->0->0->0->0->1->1->0->0->0->1->0->0->0->0->0->1->0->0->1->0->0->1
+0->2->5->10->21->22->26->32->35->38
+```
