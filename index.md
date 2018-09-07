@@ -23,4 +23,4 @@
 5. 快速修改我的主页[主题](https://github.com/supergithuber/supergithuber.github.io/settings)
 
 ### 我的联系方式
-发送邮件到 1984430988@qq.com
+E-Mail: wuyishanwuxi@gmail.com
