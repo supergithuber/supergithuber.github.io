@@ -22,4 +22,4 @@
 5. 快速修改我的主页[主题](https://github.com/supergithuber/supergithuber.github.io/settings)
 
 ### 我的联系方式
-E-Mail: wuyishanwuxi@gmail.com
+email: wuyishanwuxi@gmail.com
