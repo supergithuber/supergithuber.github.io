@@ -27,3 +27,5 @@
 12. [命名规范](https://supergithuber.github.io/ios/NamingBasics)
 
 13. [WKNavigationDelegate](https://supergithuber.github.io/ios/WKNavigationDelegate)
+
+14. [UDID和IDFA变化情况](https://supergithuber.github.io/ios/identifierForVendorChange)
