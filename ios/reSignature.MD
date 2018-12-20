@@ -9,8 +9,6 @@
 
 
 
-
-
 #### 帮助命令
 
 1. 查看ipa签名信息（Playload文件夹下的那个）: codesign -vv -d WeChat.app 
