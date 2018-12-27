@@ -151,3 +151,69 @@ will take effect immediately.
 installation should now be secure.
 
 > Thanks for using MariaDB!
+
+##### 5. 使用root用户登录到数据库中，并创建数据库
+
+> mysql -u root -p
+
+> create database owncloud;
+
+> use owncloud;
+
+> GRANT ALL ON owncloud.* to 'owncloud'@'localhost' IDENTIFIED BY 'password';  //这里就是数据库密码
+
+> flush privileges;
+
+> quit
+
+LAMP环境搭建完成了，接下来是把owncloud软件下载后导入linux服务器
+
+##### 6. 下载owncloud安装包并且解压到/var/www/html目录下
+
+>wget https://download.owncloud.org/community/owncloud-10.0.10.tar.bz2
+>tar -jxvf owncloud-10.0.10.tar.bz2 -C /var/www/html/
+>
+
+##### 7.为Web服务器上文件目录设置读写权限
+
+>chown -R apache.apache /var/www/html/owncloud/
+
+##### 8. 然后打开浏览器
+
+输入 http://[your severIP]/owncloud/
+
+如果出现一些提示PHP版本的信息，说明PHP版本不对，太高或者太低都不行，看看你本地的PHP版本
+
+> php -v
+
+我这边是7.1，太高了，下面把PHP版本降一下
+
+##### 8.1 删除PHP
+
+> yum remove php-common
+
+##### 8.2 安装PHP5.6
+
+> yum install -y php56w php56w-opcache php56w-xml php56w-mcrypt php56w-gd php56w-devel php56w-mysql php56w-intl php56w-mbstring 
+> 
+
+##### 8.3 重启httpd服务
+
+> systemctl restart httpd
+
+在看看你的php版本，这时候在浏览器应该就可以打开了 
+
+##### 9. 修改存储目录
+
+一般不要把目录放在网页目录内
+
+新建一个目录来存放数据
+
+> cd /var
+> mkdir owncloud_data
+> chown apache owncloud_data -Rf
+> chmod 770 owncloud_data -Rf
+
+记得修改存储目录
+
+**最后创建一个root用户，填上对应的数据存放目录、数据库名字和密码就可以使用了**
