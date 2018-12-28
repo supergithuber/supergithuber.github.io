@@ -1,5 +1,14 @@
 ## owncloud
 
+
+机器:
+
+> NAME="CentOS Linux"
+> 
+> VERSION="7 (Core)"
+> 
+
+
 ##### 1. 安装httpd, php, mariadb
 yum install httpd -y
 
@@ -57,7 +66,7 @@ systemctl status httpd
 
 这样会打印出进程号，类似这样，这里进程号是14411
 
-> [1] 1441
+> [1] 14411
 
 > [root@centos7 ~]# 170531 02:10:28 mysqld_safe Logging to '/var/log/mariadb/mariadb.log'.
 
