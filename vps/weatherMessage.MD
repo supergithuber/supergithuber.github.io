@@ -1,6 +1,6 @@
 ## WeatherMessage
 
-这是一个利用一些免费接口做的工具，它每天定时发送天气预报的短信到你手机上。
+这是一个利用一些免费接口做的工具，它每天定时发送天气预报的短信到你手机上，项目的地址在[WeatherMessage](https://github.com/supergithuber/WeatherMessage)。
 
 1. 获取天气信息，[心知天气](https://www.seniverse.com/)，天气的有收费接口，也有免费接口，这里用免费接口就够了。
 2. 免费发送短信，[twilio](https://www.twilio.com/)，短信的可以免费给注册的手机发送。
@@ -8,3 +8,23 @@
 去这两个平台注册账号，看看它们的文档。
 
 当然还有一台linux服务器，这里用的是centos7，安装好Python。
+
+----
+
+##### 1. 代码的地址在[这里](https://github.com/supergithuber/WeatherMessage/blob/master/weather.py)
+
+主要的方法就是去心知天气获取天气信息，还有一个就是用twilio去给手机发送信息
+
+##### 2. 定时执行脚本
+
+Linux自带crond，没有就安装一下。
+
+> crond -e
+
+编辑定时任务，格式可以看它的[文档](https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/crontab.html)
+
+然后启动重启crond
+
+> service crond restart
+ 
+注意设置下服务器时间
