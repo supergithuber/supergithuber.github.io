@@ -37,6 +37,8 @@ Linux自带crond，没有就安装一下。
 
 ##### 3. 推送到git
 
-之前使用gitPython结合crond，一直有git目录不对的问题。
+~~之前使用gitPython结合crond，一直有git目录不对的问题。
 crond使用的时候是默认系统目录的，我配置了绝对路径还是不行。
-后面改用subprocess这个Python库。
+后面改用subprocess这个Python库~~
+
+后来发现gitPython和crond结合的时候，要注意项目的路径，如果是在用户目录下，千万不要用~/开头，要直接用/root/（用户名为root），就可以了。
