@@ -13,11 +13,17 @@
 
 ##### 1. 代码的地址在[这里](https://github.com/supergithuber/WeatherMessage/blob/master/weather.py)
 
-主要的方法就是去心知天气获取天气信息，还有一个就是用twilio去给手机发送信息
+主要的方法就是：
+
+* 去心知天气获取天气信息。
+* 用twilio去给手机发送信息。
+* 把每天的信息写入到txt里，并推送到git上。
 
 ##### 2. 定时执行脚本
 
 Linux自带crond，没有就安装一下。
+
+编辑crond定时任务
 
 > crond -e
 
@@ -28,3 +34,4 @@ Linux自带crond，没有就安装一下。
 > service crond restart
  
 注意设置下服务器时间
+
