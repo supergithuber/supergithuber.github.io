@@ -58,3 +58,45 @@ nobrowse代表finder里不显示这个分区，必须这么做才可以
 2. mounty ntfs（原生的封装）
 3. Tuxera NTFS(收费)
 4. [fuse for macos](https://osxfuse.github.io/)
+
+---
+
+## fuse for macos用法
+
+#### 1. 安装，官网见上方，源码在github上。
+#### 2. 安装ntfs-3g
+> brew install ntfs-3g。
+
+如果遇到不可写入的问题：/usr/local/sbin is not writable.
+
+检查有没有这个文件夹，如果没有就要新建mkdir
+
+> sudo chown -R \`whoami\`:admin /usr/local/sbin
+
+#### 3. 更换MacOS的NTFS默认挂载程序
+
+首先备份系统默认的NTFS挂载程序
+
+> sudo mv /sbin/mount_ntfs /sbin/mount_ntfs.orig
+
+然后将ntfs-3g挂载程序链接到/sbin/mount_ntfs
+
+> sudo ln -s /usr/local/sbin/mount_ntfs /sbin/mount_ntfs
+
+在osx 10.11之后，苹果不允许ln -s对/usr下的东西建立快捷方式，原因在这里[System Integrity Protection](https://developer.apple.com/library/archive/documentation/Security/Conceptual/System_Integrity_Protection_Guide/ConfiguringSystemIntegrityProtection/ConfiguringSystemIntegrityProtection.html)
+
+你需要重启电脑，按住command+R进入恢复模式，选择工具-terminal
+
+```
+csrutil disable
+reboot 
+```
+
+然后就可以操作了，切记弄完后回来
+
+```
+csrutil enable
+reboot
+```
+
+SIP可以保护你的电脑，一定要打开
