@@ -83,7 +83,7 @@ nobrowse代表finder里不显示这个分区，必须这么做才可以
 
 > sudo ln -s /usr/local/sbin/mount_ntfs /sbin/mount_ntfs
 
-在osx 10.11之后，苹果不允许ln -s对/usr下的东西建立快捷方式，原因在这里[System Integrity Protection](https://developer.apple.com/library/archive/documentation/Security/Conceptual/System_Integrity_Protection_Guide/ConfiguringSystemIntegrityProtection/ConfiguringSystemIntegrityProtection.html)
+在osx 10.11之后，苹果使用了SIP，禁止操作/sbin下的东西，原因在这里[System Integrity Protection](https://developer.apple.com/library/archive/documentation/Security/Conceptual/System_Integrity_Protection_Guide/ConfiguringSystemIntegrityProtection/ConfiguringSystemIntegrityProtection.html)
 
 你需要重启电脑，按住command+R进入恢复模式，选择工具-terminal
 
