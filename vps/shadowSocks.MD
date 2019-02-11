@@ -39,6 +39,7 @@ Enjoy it!
 
 ##### 最后在你的客户端下载shadowsocks，mac和windows在github上有；iOS和android可以下载superwingy, shadowrocket类似的VPN客户端；chrome浏览器也有类似插件，输入服务器ip，端口，密码，加密方式就可以
 
+##### 修改配置的配置文件在**/etc/shadowsocks-go/config.json**这个目录下，修改完后要重启**/etc/init.d/shadowsocks-go restart**
 
 -------
 
