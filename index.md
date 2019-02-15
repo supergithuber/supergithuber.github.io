@@ -14,7 +14,7 @@
 
 * [Tips](https://supergithuber.github.io/tips/tips_index)
 
-* [openGL](https://supergithuber.github.io/openGL/openGL_index)
+* [OpenGL](https://supergithuber.github.io/openGL/openGL_index)
 
 ### 支持与联系
 
