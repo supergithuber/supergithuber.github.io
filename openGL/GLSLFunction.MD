@@ -30,6 +30,14 @@
 
 ### 3. 通用函数
 
+|  函数定义              |  描述                    |  备注    |
+|  ----          | -------                  | ----  |
+| genType abs (genType x) | 返回x的绝对值 |   |
+| genType sign (genType x) | 如果x>0，返回1.0；如果x=0，返回0，如果x<0，返回-1.0 |    |
+| genType floor (genType x) | 返回小于等于x的最大整数 | |
+| genType ceil (genType x)  | 返回大于等于x的最小整数 | |
+| genType fract (genType x) | 返回x-floor(x) |  |
+
 ### 4. 几何函数
 
 ### 5. 矩阵函数
