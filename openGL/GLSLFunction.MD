@@ -18,6 +18,16 @@
 
 ### 2. 指数函数
 
+|  函数定义              |  描述                    |  备注    |
+|  ----          | -------                  | ----  |
+| genType pow (genType x, genType y) |  x的y次方    | 如果x小于0，结果是未定义的（数学上有意义，opengl认为没有意义）。如果x=0并且y<=0,结果也是未定义的       | 
+| genType exp (genType x) | e的x次方  |      |
+| genType log (genType x) | 计算满足x等于e的y次方的y的值 | 如果x的值小于0，结果是未定义的 |
+| genType exp2 (genType x) | 计算2的x次方  |   |
+| genType log2 (genType x)  | 计算满足x等于2的y次方的y的值 | 如果x的值小于0，结果是未定义的 |
+| genType sqrt (genType x) | 计算x的开方 | 如果x小于0，结果是未定义的 |
+| genType inversesqrt (genType x) | 1/sqrt(x) | 如果x小于等于0，结果是未定义的 |
+
 ### 3. 通用函数
 
 ### 4. 几何函数
