@@ -47,7 +47,16 @@
 
 ### 4. 几何函数
 
-
+|  函数定义              |  描述                    |  备注    |
+|  ----          | -------                  | ----  |
+| float length (genType x) | 返回向量x的长度 |    |
+| float distance (genType p0, genType p1) | 返回两个向量之间的距离 |   |
+| float dot (genType x, genType y) | 返回x和y之间的点积 |   |
+| vec3 cross (vec3 x, vec3 y) | 返回两个向量之间的叉积 |  |
+| genType normalize (genType x) | 标准化向量，就是返回一个方向相同，长度为1的向量 |    |
+| genType faceforward(genType N,genType I,genType Nref) | 如果Nref和I的点积小于0，返回N；否则，返回-N |  |
+| genType reflect (genType I, genType N) | 入射向量I，表面方向N，返回反射向量：I – 2 ∗ dot(N, I) ∗ N | N必须被标准化 |
+| genType refract(genType I, genType N,float eta) | 入射向量I，表面方向向量N，折射指数比eta，返回折射向量：k = 1.0 - eta * eta * (1.0 - dot(N, I) * dot(N, I)); if (k < 0.0) return genType(0.0) else return eta * I - (eta * dot(N, I) + sqrt(k)) * N | 入射向量I和表面方向向量N必须标准化 |
 
 ### 5. 矩阵函数
 
