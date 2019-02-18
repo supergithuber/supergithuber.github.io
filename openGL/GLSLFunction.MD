@@ -36,9 +36,18 @@
 | genType sign (genType x) | 如果x>0，返回1.0；如果x=0，返回0，如果x<0，返回-1.0 |    |
 | genType floor (genType x) | 返回小于等于x的最大整数 | |
 | genType ceil (genType x)  | 返回大于等于x的最小整数 | |
-| genType fract (genType x) | 返回x-floor(x) |  |
+| genType fract (genType x) | 返回x-floor(x) | 正数是小数部分，负数不是 |
+| genType mod (genType x, float y)、genType mod (genType x, genType y) | 求模运算 | 不同语言对于负数的求模运算结果可能不一样，这里计算公式为x – y ∗ floor (x/y) |
+| genType min (genType x, genType y), genType min (genType x, float y) | 返回二者较小值 |  |
+| genType max (genType x, genType y), genType max (genType x, float y) | 返回二者较大值 |   |
+| genType clamp (genType x,genType minVal, genType maxVal), genType clamp (genType x, float minVal,float maxVal) | 返回min (max (x, minVal), maxVal)，就是三者中的中间值 | 如果minVal > maxVal，结果未定义 |
+| genType mix (genType x,genType y,genType a), genType mix (genType x,genType y, float a) | 返回x和y的线性混合：x(1-a)+ya |    |
+| genType step (genType edge, genType x), genType step (float edge, genType x) | 如果x < edge，返回0.0，否则返回1.0 |    |
+| genType smoothstep (genType edge0, genType edge1,genType x), genType smoothstep (float edge0,float edge1,genType x) | 如果x <= edge0，返回0.0 ；如果x >= edge1 返回1.0；如果edge0 < x < edge1，则执行0~1之间的平滑埃尔米特差值。如果edge0 >= edge1，结果是未定义的 | genType t; t = clamp ((x – edge0) / (edge1 – edge0), 0, 1); return t * t * (3 – 2 * t); |
 
 ### 4. 几何函数
+
+
 
 ### 5. 矩阵函数
 
