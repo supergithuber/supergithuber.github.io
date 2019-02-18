@@ -60,6 +60,24 @@
 
 ### 5. 矩阵函数
 
+|  函数定义              |  描述                    |  备注    |
+|  ----          | -------                  | ----  |
+| mat matrixCompMult (mat x, mat y) | 这里是矩阵的标量积，即result[i][j]是 x[i][j] 和 y[i][j]乘积 | 要获取线性代数矩阵的乘法，使用乘法操作符* |
+
 ### 6. 矢量关系函数
+
+bvec代表bool向量，ivec代表整数向量
+
+|  函数定义              |  描述                    |  备注    |
+|  ----          | -------                  | ----  |
+| bvec lessThan(vec x, vec y), bvec lessThan(ivec x, ivec y) | 是否小于 |   |
+| bvec lessThanEqual(vec x, vec y), bvec lessThanEqual(ivec x, ivec y) | 是否小于等于 |   |
+| bvec greaterThan(vec x, vec y), bvec greaterThan(ivec x, ivec y) | 是否大于 |   |
+| bvec greaterThanEqual(vec x, vec y), bvec greaterThanEqual(ivec x, ivec y) | 是否大于等于 |  |
+| bvec equal(vec x, vec y), bvec equal(ivec x, ivec y), bvec equal(bvec x, bvec y) | 是否等于  |    |
+| bvec notEqual(vec x, vec y), bvec notEqual(ivec x, ivec y), bvec notEqual(bvec x, bvec y) | 是否不等于    |   |
+| bool any(bvec x) | 如果向量x的任意部分为true，返回true   |   |
+| bool all(bvec x) | 如果向量x的所有部分为true，返回true  |    |
+| bvec not(bvec x) | 返回向量x的互补矩阵 |  |
 
 ### 7. 纹理查找函数
