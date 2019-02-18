@@ -81,3 +81,39 @@ bvec代表bool向量，ivec代表整数向量
 | bvec not(bvec x) | 返回向量x的互补矩阵 |  |
 
 ### 7. 纹理查找函数
+
+纹理查询的最终目的是从 sampler 中提取指定坐标的颜色信息。
+
+顶点着色器和片段着色器中都可以使用纹理查找函数。但是在顶点着色器中不会计算细节层次（level of detail），所以二者的纹理查找函数略有不同。
+
+图像纹理有两种：一种是平面2d纹理，另一种是盒纹理。针对不同的纹理类型有不同访问方法。
+
+* 函数中带有 Cube 字样的是指需要传入盒状纹理。
+* 带有 Proj 字样的是指带投影的版本。
+
+顶点着色器中可用：
+
+```
+vec4 texture2DLod(sampler2D sampler, vec2 coord, float lod);
+vec4 texture2DProjLod(sampler2D sampler, vec3 coord, float lod);
+vec4 texture2DProjLod(sampler2D sampler, vec4 coord, float lod);
+vec4 textureCubeLod(samplerCube sampler, vec3 coord, float lod);
+```
+
+片段着色器中可用：
+
+```
+vec4 texture2D(sampler2D sampler, vec2 coord, float bias);
+vec4 texture2DProj(sampler2D sampler, vec3 coord, float bias);
+vec4 texture2DProj(sampler2D sampler, vec4 coord, float bias);
+vec4 textureCube(samplerCube sampler, vec3 coord, float bias);
+```
+
+顶点着色器和片段着色器都可用：
+
+```
+vec4 texture2D(sampler2D sampler, vec2 coord);
+vec4 texture2DProj(sampler2D sampler, vec3 coord);
+vec4 texture2DProj(sampler2D sampler, vec4 coord);
+vec4 textureCube(samplerCube sampler, vec3 coord);
+```
