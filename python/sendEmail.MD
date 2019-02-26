@@ -1,5 +1,7 @@
 ## Python发送邮件
 
+[项目地址](https://github.com/supergithuber/sendEmail)
+
 ### 1. 安装支持库
 
 安装smtplib库
