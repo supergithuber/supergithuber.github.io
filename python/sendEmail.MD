@@ -117,3 +117,17 @@ if __name__ == "__main__":
     #登录到服务器
     smtpObj.login(sender, mail_pass)
 ```
+
+如果是一些要求SSL登陆的邮箱，例如QQ邮箱，登陆SMTP服务器的代码段就要改成：
+
+```python
+smtpObj = smtplib.SMTP_SSL(smtp_host)
+```
+
+### 5. 发送带有附件的邮件
+
+### 6. 发送HTML格式的邮件
+
+### 7. 在HTML文本中添加图片
+
+这些可以实现，我没有写代码，可以参考[Python SMTP](http://www.runoob.com/python/python-email.html)
