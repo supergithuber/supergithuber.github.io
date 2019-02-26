@@ -58,3 +58,62 @@ SMTP.sendmail(from_addr, to_addrs, msg[, mail_options, rcpt_options])
 
 这里要注意一下第三个参数，msg 是字符串，表示邮件。我们知道邮件一般由标题，发信人，收件人，邮件内容，附件等构成，发送邮件的时候，要注意 msg 的格式。这个格式就是 smtp 协议中定义的格式.
 
+### 4. 发送纯文本邮件
+
+我使用的是谷歌邮箱发送，使用的也是谷歌的smtp服务器
+
+还遇到
+
+```python
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
+import smtplib
+from email.mime.text import MIMEText
+from email.header import Header
+ 
+def gmailSmtp():
+    #smtp邮箱服务器地址
+    smtp_host = 'smtp.gmail.com'  
+    #密码(部分邮箱为授权码) 
+    mail_pass = 'your secret' 
+
+    sender = 'wuyishanwuxi@gmail.com'
+    receivers = ['361125982@qq.com']  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
+ 
+    # 三个参数：第一个为文本内容，第二个 plain 设置文本格式，第三个 utf-8 设置编码
+    message = MIMEText('Python 邮件发送测试...', 'plain', 'utf-8')
+    message['From'] = Header("Hello", 'utf-8')   # 发送者
+    message['To'] =  Header("测试", 'utf-8')        # 接收者
+ 
+    subject = 'Python SMTP 邮件测试'
+    message['Subject'] = Header(subject, 'utf-8')
+ 
+ 
+    try:
+        smtpObj = smtplib.SMTP(smtp_host, 587)
+        smtpObj.ehlo()
+        smtpObj.starttls()
+        smtpObj.login(sender, mail_pass)
+        smtpObj.sendmail(sender, receivers, message.as_string())
+        smtpObj.quit()
+        print "邮件发送成功"
+    except smtplib.SMTPException as e:
+        print ("Error: 无法发送邮件", e)
+
+if __name__ == "__main__":
+    gmailSmtp()
+
+```
+
+谷歌邮箱要求必须使用安全的tls，所以要走587端口。期间还遇到禁止不安全应用登陆的问题，根据打印的错误信息去谷歌邮箱的安全设置里头打开”允许不安全的应用登陆“，之后才可以
+
+如果是一般没有那么严格的邮箱系统，就走SMTP的25端口，对应的登陆SMTP服务器的代码段改成：
+
+```python
+    smtpObj = smtplib.SMTP() 
+    #连接到服务器
+    smtpObj.connect(smtp_host, 25)
+    #登录到服务器
+    smtpObj.login(sender, mail_pass)
+```
