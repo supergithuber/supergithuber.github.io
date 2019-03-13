@@ -8,7 +8,7 @@ iOS中UIView是支持autolayout的，但是CALayer是不支持的。经常我们
 
 在controller的viewDidLayoutSubviews方法内，view的frame和它的layer的大小都是确定的，因此可以在这个方法内部对layer设置它的frame。
 
-```objective-c
+```objc
 - (void)viewDidLayoutSubviews { 
     [super viewDidLayoutSubviews]; 
 
@@ -30,7 +30,7 @@ iOS中UIView是支持autolayout的，但是CALayer是不支持的。经常我们
 
 每个UIView底层都有一个CALayer，并且UIView有一个API+ (Class)layerClass，允许我们自定义CALayer的类。那我们就可以自定义一个UILabel，重写+ (Class)layerClass方法返回CAGradientLayer。我们只需要对UILabel进行约束，就会映射到它自身的CALayer。
 
-```objective-c
+```objc
 @implementation CustomLabel 
 + (Class)layerClass { 
     return [CAGradientLayer class]; 
@@ -59,7 +59,7 @@ iOS中UIView是支持autolayout的，但是CALayer是不支持的。经常我们
 
 新建一个分类
 
-```objevtive-c
+```objc
 
 @interface UIView (LayoutSubviewsCallback)
 
@@ -94,7 +94,7 @@ iOS中UIView是支持autolayout的，但是CALayer是不支持的。经常我们
 
 在外部使用的时候，就可以
 
-```objective-c
+```objc
     CAGradientLayer *gradientLayer = [CAGradientLayer layer]; 
     gradientLayer.colors = @[(id)[[UIColor alloc] initWithRed:16/255.0 green:175/255.0 blue:211/255.0 alpha:1].CGColor, (id)[[UIColor alloc] initWithRed:33/255.0 green:94/255.0 blue:147/255.0 alpha:1].CGColor]; 
     gradientLayer.locations = @[@(0), @(1)]; 
