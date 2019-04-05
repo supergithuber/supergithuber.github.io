@@ -25,3 +25,5 @@ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Crese
 
 
 配置完的信息都在.gitconfig文件中。
+
+github的markdown解释器把双横线解释为单横线，这里需要复制完修改一下。
