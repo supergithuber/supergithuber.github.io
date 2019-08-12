@@ -53,7 +53,7 @@ awk '{print $1}' ip.txt |sort -n |uniq -c |sort -n
 3 123
 ```
 
-#### 3. 3.计算Linux系统所有进程占用内存之和
+#### 3. 计算Linux系统所有进程占用内存之和
 
 ```
 #!/bin/bash
