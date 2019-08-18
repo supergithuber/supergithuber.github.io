@@ -207,3 +207,4 @@ mysqldump -u'指定的用户' -p'指定的密码' '指定的数据库' > $bakdir
 rsync -az $bakdir/$d1.sql $r_bakdir/$d2.sql
 echo "mysql backup end at `date +"%F %T"`"
 ```
+
