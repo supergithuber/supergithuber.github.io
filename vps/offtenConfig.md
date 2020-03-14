@@ -36,3 +36,27 @@ systemctl restart crond.service
 systemctl enable crond.service
 ```
 
+### nvm
+
+```shell
+## 下载nvm
+wget https://codeload.github.com/creationix/nvm/zip/master
+## 解压
+unzip master
+## 安装
+cd nvm-master
+./install.sh
+## 添加环境变量
+source ~/.bashrc
+## 查看版本
+nvm --version
+```
+
+
+
+### 压缩
+
+```shell
+yum install zip unzip
+```
+
