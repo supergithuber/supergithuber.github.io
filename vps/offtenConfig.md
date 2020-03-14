@@ -78,9 +78,9 @@ sudo yum -y install libffi-devel
 wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tar.xz
 tar xJf Python-3.7.0.tar.xz
 cd Python-3.7.0
-sudo ./configure
+sudo ./configure --with-ssl
 sudo make
-sudo make install
+sudo make altinstall
 
 #创建软连接，修改默认python版本
 mv /usr/bin/python /usr/bin/python.bak
