@@ -60,3 +60,36 @@ nvm --version
 yum install zip unzip
 ```
 
+### mongodb
+
+```shell
+yum install mongodb-server mongodb -y
+```
+
+### Python
+
+```shell
+#一些依赖
+sudo yum groupinstall "Development tools"
+sudo yum -y install zlib zlib-devel
+sudo yum -y install libffi-devel
+
+#安装
+wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tar.xz
+tar xJf Python-3.7.0.tar.xz
+cd Python-3.7.0
+sudo ./configure
+sudo make
+sudo make install
+
+#创建软连接，修改默认python版本
+mv /usr/bin/python /usr/bin/python.bak
+ln -s /usr/local/bin/python3.7 /usr/bin/python
+mv /usr/bin/pip /usr/bin/pip.bak
+ln -s /usr/local/bin/pip3.7 /usr/bin/pip
+
+#yum无法使用，要修改下面两个文件的顶部，把#! /usr/bin/python改为#! /usr/bin/python2
+vim /usr/libexec/urlgrabber-ext-down
+vim /usr/bin/yum
+```
+
