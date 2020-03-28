@@ -27,3 +27,6 @@
    
 
 7. [常用配置](https://supergithuber.github.io/vps/offtenConfig)
+
+8. [在centOS下安装mongoDB](ttps://supergithuber.github.io/vps/installMongodb)
+
