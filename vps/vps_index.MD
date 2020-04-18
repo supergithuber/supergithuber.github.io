@@ -30,3 +30,5 @@
 
 8. [在centOS下安装mongoDB](https://supergithuber.github.io/vps/installMongodb)
 
+9. [在centOS下安装离线下载播放器（aira2 + h5ai）](https://supergithuber.github.io/vps/installAria2)
+
