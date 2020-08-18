@@ -8,5 +8,7 @@
 
 这个时候就要用其他的方法获取到系统符号表。例如从ipsw固件中获取。
 
-1. 去一些固件下载网站[theiphonewiki.com](https://www.theiphonewiki.com/wiki/Firmware)下载对应版本的固件
+#### 准备
 
+1. 去一些固件下载网站[theiphonewiki.com](https://www.theiphonewiki.com/wiki/Firmware)下载对应版本的固件
+2. 下载dmg解密工具，VFDecrypt命令行或者是它的客户端iDecrypt等能够解密dmg的工具，不好找。此处提供一个[iDecrypt](https://supergithuber.github.io/Resources/iDecrypt-Mac-build91-bennyyboi.zip)
