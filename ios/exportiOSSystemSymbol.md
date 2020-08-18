@@ -27,7 +27,7 @@ clang++ -o dsc_extractor ./dsc_extractor.cpp dsc_iterator.cpp
 
 1. 将下载来的ipsw改为zip，解压。找到解压目录下最大的哪个dmg文件，就是待解密的dmg文件。
 
-2. 通过iDecrypt解密dmg
+2. 通过iDecrypt解密dmg，这里的key要从下载固件的网站获取，theiphonewiki中的**SHA1 Hash**
 ![iDecrypt](../img2/iDecryptSoftware.png)
 
 3. 解压后可以双击打开dmg文件，在其中的`System/Library/Caches/com.apple.dyld`目录下可以看到`dyld_shared_cache_arm64、dyld_shared_cache_armv7s、dyld_shared_cache_armv7`类似这样的文件，这些就是压缩的系统库。
