@@ -9,7 +9,7 @@
 5. [DataStructure](https://supergithuber.github.io/dataStructure/dataStructure_index)
 6. [Tips](https://supergithuber.github.io/tips/tips_index)
 7. [OpenGL](https://supergithuber.github.io/openGL/openGL_index)
-8. [shell](https://supergithuber.github.io/openGL/shell_index)
+8. [shell](https://supergithuber.github.io/shell/shell_index)
 
 ### 支持与联系
 
