@@ -3,18 +3,13 @@
 ### 主页目录
 
 1. [iOS](https://supergithuber.github.io/ios/ios_index)
-
 2. [Server](https://supergithuber.github.io/vps/vps_index)
-
 3. [Python](https://supergithuber.github.io/python/python_index)
-
 4. [Algorithm](https://supergithuber.github.io/algorithm/algorithm_index)
-
 5. [DataStructure](https://supergithuber.github.io/dataStructure/dataStructure_index)
-
 6. [Tips](https://supergithuber.github.io/tips/tips_index)
-
 7. [OpenGL](https://supergithuber.github.io/openGL/openGL_index)
+8. [shell](https://supergithuber.github.io/openGL/shell_index)
 
 ### 支持与联系
 
