@@ -19,4 +19,4 @@
 15. [Autolayout和layer的处理](https://supergithuber.github.io/ios/AutolayoutAndLayer)
 16. [下载IPA文件，获取头文件](https://supergithuber.github.io/ios/DownloadIPA_getHeader)
 17. [从iOS固件ipsw中提取系统符号表](https://supergithuber.github.io/ios/exportiOSSystemSymbol)
-
+18. [iOS字符串加密](https://supergithuber.github.io/ios/stringConfusion)
