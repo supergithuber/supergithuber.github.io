@@ -136,12 +136,12 @@ Pod::Spec.new do |s|
 
   s.name         = "UNQCTime"
   s.version      = "0.2.2"
-  s.summary      = "Bigo iOS 启动耗时C函数监控."
-  s.homepage     = "https://git.sysop.bigo.sg/bigo-mobile-performance-team/ios-performance/unqstarttimeproject"
-  s.license      = "Copyright © 2021 Bigo Inc. All rights reserved."
-  s.author       = "Bigo Inc."
+  s.summary      = "summary"
+  s.homepage     = "https://url"
+  s.license      = "Copyright"
+  s.author       = "sivanwu."
   s.platform     = :ios, "9.0"
-  s.source       = { :git => "https://git.sysop.bigo.sg/bigo-mobile-performance-team/ios-performance/unqstarttimeproject", :tag => "#{s.version}" }
+  s.source       = { :git => "giturl", :tag => "#{s.version}" }
   s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
