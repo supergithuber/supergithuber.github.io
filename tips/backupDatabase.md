@@ -1,5 +1,7 @@
 ## 数据库操作
 
+### Mysql
+
 - mysql数据库备份
 
 ```shell
@@ -20,7 +22,7 @@ USE information_schema;
 SELECT TABLE_SCHEMA, SUM(DATA_LENGTH)/1024/1024 FROM TABLES GROUP BY TABLE_SCHEMA;
 ```
 
-
+### mongodb
 
 - mongodb备份
 
@@ -33,6 +35,20 @@ mongodump -h dbhost -d dbname -o dbdirectory
 ```shell
 mongorestore -h <hostname><:port> -d dbname <path>   //default port: 27017
 ```
+
+- mongodb备份单个表
+
+```shell
+sudo ./mongoexport --host [ip] --port [port] --authenticationDatabase admin --username [username] --password [password] --collection appinfov2 --db mongooseuser --out ./appinfov2.json
+```
+
+- mongodb恢复单个表
+
+```shell
+sudo ./mongoimport --host [ip] --port [port] --authenticationDatabase admin --username [username] --password [password] --collection appinfov2 --db mongooseuser --file ./appinfov2.json
+```
+
+authenticationDatabase: 指定创建User的数据库；在特定的数据库中创建User，该DB就是User的authentication database
 
 - 查看数据库大小
 
@@ -66,4 +82,3 @@ db.stats(1024);//以kb为单位返回
     "ok" : 1.0
 }
 ```
-
