@@ -9,3 +9,4 @@
 5. [数据库备份](https://supergithuber.github.io/tips/backupDatabase)
 6. [梅林固件无法访问软件中心](https://supergithuber.github.io/tips/meilinSoftwareCenter)
 7. [pyenv无法修改Python --version显示的版本](https://supergithuber.github.io/tips/pyenvShowPythonVersion)
+8. [Mysql忘记账号密码](https://supergithuber.github.io/tips/MysqlForgetPassword)
